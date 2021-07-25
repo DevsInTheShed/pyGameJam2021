@@ -1,9 +1,9 @@
 import os, pygame
 from game import enums
-from game.bullet import Bullet
+import random
 
 
-class Character(pygame.sprite.Sprite):
+class Enemy(pygame.sprite.Sprite):
     def __init__(self, char_type, x, y, scale, speed, GRAVITY):
         pygame.sprite.Sprite.__init__(self)
         self.actions = enums.Action
@@ -20,16 +20,14 @@ class Character(pygame.sprite.Sprite):
         self.frame_index = 0
         self.action = self.actions.idle
         self.update_time = pygame.time.get_ticks()
-        self.bullet_count = 100
-        self.score = 0
 
         animation_types = ['Idle', 'Run', 'Jump']
         for animation in animation_types:
             temp_list = []
-            num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', self.char_type, animation)))
+            num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', 'enemy', self.char_type, animation)))
             for i in range(num_of_frames):
                 i = str(i)
-                img = pygame.image.load(os.path.join('assets', 'sprites', self.char_type, animation, i+'.png')).convert_alpha()
+                img = pygame.image.load(os.path.join('assets', 'sprites', 'enemy', self.char_type, animation, i+'.png')).convert_alpha()
                 img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
                 temp_list.append(img)
 
@@ -39,27 +37,20 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
-    def shoot(self, bullet_group) :
-        if self.bullet_count > 0:
-            self.bullet_count = self.bullet_count - 1
-            bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery,
-                            self.direction)
-            bullet_group.add(bullet)
-
-    def update_score(self, increment):
-        self.score = self.score + increment
-
-    def move(self, move_left, move_right):
+    def move(self):
         delta_x = 0
 
-        if move_left:
+        move = random.randrange(0,10)
+
+        if move > 4:
             delta_x = -self.speed
             self.flip = True
             self.direction = -1
-        if move_right:
+        else:
             delta_x = self.speed
             self.flip = False
             self.direction = 1
+
         if self.jump and not self.in_air:
             self.velocity_y = -11
             self.jump = False
@@ -86,12 +77,17 @@ class Character(pygame.sprite.Sprite):
         if self.frame_index >= len(self.animation_list[self.action.value]):
             self.frame_index = 0
 
-    def update_action(self, new_action):
+    def update_action(self, new_action, bullet_group, player):
         if new_action != self.action:
             self.action = new_action
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()
 
+        collisions = pygame.sprite.spritecollide(self, bullet_group, False)
+        for bullet in collisions:
+            bullet_group.remove(bullet)
+            player.update_score(10)
+
+
     def draw(self, screen):
-        print(self.score)
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
