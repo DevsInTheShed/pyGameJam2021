@@ -1,4 +1,4 @@
-import  pygame
+import os, pygame
 
 pygame.font.init()
 
@@ -17,6 +17,10 @@ YELLOW = (255,255,0)
 
 # Fonts
 TitleFont = pygame.font.SysFont('comicsans', 40)
+
+# Images 
+StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
+
 
 # Physics constants
 Clock = pygame.time.Clock()
