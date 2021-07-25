@@ -93,5 +93,5 @@ class Character(pygame.sprite.Sprite):
             self.update_time = pygame.time.get_ticks()
 
     def draw(self, screen):
-        print(self.score)
+        print("Score: " + str(self.score))
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
