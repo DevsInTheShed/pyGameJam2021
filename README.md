@@ -2,6 +2,8 @@
 
 Jam URL: https://itch.io/jam/pygame-community-summer-team-jam
 
+Team Blog: https://pygamesummerjam.devsintheshed.com/
+
 ### Prerequisites
 
 * Python 3.6+ installed on your computer
