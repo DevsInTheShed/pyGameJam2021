@@ -1,34 +1,26 @@
 import os, pygame
-from game import game_characters, enums
+from game.globals import *
+from game.character import Character, enums
 
 pygame.init()
-
-screen_width = 800
-screen_height = int(screen_width * 0.8)
-screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Western Harry')
-clock = pygame.time.Clock()
-fps = 60
-game_running = True
-game_background_color = (61, 43, 31)
-game_ground_color = (255, 200, 200)
-GRAVITY = 0.75
 
-player = game_characters.Character('player', 200, 200, 3, 5, GRAVITY)
+
+player = Character('player', 200, 200, 3, 5, GRAVITY)
 player_move_left = False
 player_move_right = False
 player.actions = enums.Action
 
 def draw_background():
-    screen.fill(game_background_color)
-    pygame.draw.line(screen, game_ground_color, (0, 300), (screen_width, 300))
+    ViewScreen.fill(ViewScreenBackgroundColor)
+    pygame.draw.line(ViewScreen, GroundColor, (0, 300), (SCREEN.width, 300))
 
 while game_running:
-    clock.tick(fps)
+    Clock.tick(FPS)
     draw_background()
 
     player.update_animation()
-    player.draw(screen)
+    player.draw(ViewScreen)
 
     if player.alive:
         if player.in_air:
