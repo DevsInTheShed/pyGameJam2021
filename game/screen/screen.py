@@ -1,8 +1,9 @@
 import pygame
 
 class Screen:
-    def __init__(self, globals):
+    def __init__(self, globals, state):
         self.globals = globals
+        self.state = state
 
     def draw(self):
         for event in pygame.event.get():

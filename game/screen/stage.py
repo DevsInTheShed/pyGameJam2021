@@ -2,8 +2,8 @@ import pygame
 from game.screen.screen import Screen
 
 class Stage(Screen):
-    def __init__(self, globals, player1):
-        super().__init__(globals)
+    def __init__(self, globals, state, player1):
+        super().__init__(globals, state)
         self.player1 = player1
         self.playerState = {
             "player1": {"moveLeft": False, "moveRight": False}
