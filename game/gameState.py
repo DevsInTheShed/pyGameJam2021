@@ -8,21 +8,13 @@ class GameState:
         self.screens = enums.Screen
         self.currentScreen = self.screens.menu
 
-        # menu screen
-        scrMenu = menu.Menu(globals, self)
-
-        # intro screen
-        scrIntro = intro.Intro(globals, self)
-
-        # stage screen
         player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
         player.actions = enums.Action
+
+        scrMenu = menu.Menu(globals, self)
+        scrIntro = intro.Intro(globals, self)
         scrStage = stage.Stage(globals, self, player)
-
-        # end screen
         scrEnd = end.End(globals, self)
-
-        # credits screen
         scrCredits = credits.Credits(globals, self)
 
 
