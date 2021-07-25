@@ -13,7 +13,7 @@ class Bullet(pygame.sprite.Sprite):
 		self.rect.center = (x, y)
 		self.direction = direction
 
-	def update(self, enemy, bullet_group):
+	def update(self):
 		#move bullet
 		self.rect.x += (self.direction * self.speed)
 		#check if bullet has gone off screen

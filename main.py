@@ -9,8 +9,6 @@ state = GameState(globals)
 
 while globals.GameRunning:
     globals.Clock.tick(globals.FPS)
-
-    
     globals.GameRunning = state.render()
     pygame.display.update()
 
