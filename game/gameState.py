@@ -1,6 +1,8 @@
 from game import enums
 from game.character import Character
-from game.screen import menu, intro, stage, credits, end 
+from game.screen import menu, intro, stage, credits, end
+from game.enemy import Enemy
+from game.enums import Action
 
 
 class GameState:
@@ -17,7 +19,9 @@ class GameState:
         # stage screen
         player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
         player.actions = enums.Action
-        scrStage = stage.Stage(globals, self, player)
+        enemy = Enemy('alien1', 400, 200, 3, 5, globals.GRAVITY)
+
+        scrStage = stage.Stage(globals, self, player, enemy)
 
         # end screen
         scrEnd = end.End(globals, self)

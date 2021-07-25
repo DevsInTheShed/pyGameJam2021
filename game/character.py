@@ -40,6 +40,7 @@ class Character(pygame.sprite.Sprite):
         self.rect.center = (x, y)
 
     def shoot(self, bullet_group) :
+        print("shoot")
         if self.bullet_count > 0:
             self.bullet_count = self.bullet_count - 1
             bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery,
