@@ -26,7 +26,3 @@ StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single
 Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
-
-
-
-bullet_group = pygame.sprite.Group()

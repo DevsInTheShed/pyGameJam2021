@@ -24,13 +24,10 @@ class Stage(Screen):
         self.enemy.update_animation()
         self.enemy.draw(self.globals.ViewScreen)
 
-        self.globals.bullet_group.update(self.enemy, self.globals.bullet_group)
-        self.globals.bullet_group.draw(self.globals.ViewScreen)
-
 
         if self.player1.alive:
             if self.shoot:
-                self.player1.shoot(self.globals.bullet_group)
+                self.player1.shoot()
             if self.player1.in_air:
                 self.player1.update_action(self.player1.actions.jump)
             elif self.playerState["player1"]["moveLeft"] or self.playerState["player1"]["moveRight"]:
@@ -39,7 +36,7 @@ class Stage(Screen):
                 self.player1.update_action(self.player1.actions.idle)
             self.player1.move(self.playerState["player1"]["moveLeft"], self.playerState["player1"]["moveRight"])
 
-            self.enemy.update_action(self.player1.actions.idle, self.globals.bullet_group, self.player1)
+            #self.enemy.update_action(self.player1.actions.idle, self.globals.bullet_group, self.player1)
             self.enemy.move()
 
         for event in pygame.event.get():
