@@ -22,6 +22,7 @@ class Character(pygame.sprite.Sprite):
         self.update_time = pygame.time.get_ticks()
         self.bullet_count = 100
         self.score = 0
+        self.bullet_group = pygame.sprite.Group()
 
         animation_types = ['Idle', 'Run', 'Jump']
         for animation in animation_types:
@@ -39,12 +40,12 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
 
-    def shoot(self, bullet_group) :
+    def shoot(self) :
         if self.bullet_count > 0:
             self.bullet_count = self.bullet_count - 1
             bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery,
                             self.direction)
-            bullet_group.add(bullet)
+            self.bullet_group.add(bullet)
 
     def update_score(self, increment):
         self.score = self.score + increment
@@ -93,5 +94,7 @@ class Character(pygame.sprite.Sprite):
             self.update_time = pygame.time.get_ticks()
 
     def draw(self, screen):
-        print(self.score)
+        self.bullet_group.update()
+        self.bullet_group.draw(screen)
+        print("Score: " + str(self.score))
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
