@@ -1,7 +1,5 @@
 import os, pygame
 from game import globals
-from game.character import Character, enums
-from game.screen.stage import Stage
 from game.gameState import GameState
 
 pygame.init()
