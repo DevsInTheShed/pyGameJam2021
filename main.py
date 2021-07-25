@@ -15,7 +15,7 @@ def draw_background():
     ViewScreen.fill(ViewScreenBackgroundColor)
     pygame.draw.line(ViewScreen, GroundColor, (0, 300), (SCREEN.width, 300))
 
-while game_running:
+while GameRunning:
     Clock.tick(FPS)
     draw_background()
 
@@ -55,7 +55,7 @@ while game_running:
                 shoot = False
 
         if event.type == pygame.QUIT:
-            game_running = False
+            GameRunning = False
 
     pygame.display.update()
 
