@@ -1,9 +1,9 @@
 import pygame 
-from game.screen.screen import Screen
+from screen.screen import Screen
 
 class Stage(Screen):
-    def __init__(self, globals, state, player1, enemy):
-        super().__init__(globals, state)
+    def __init__(self, state, player1, enemy):
+        super().__init__(state)
         self.player1 = player1
         self.enemy = enemy
         self.playerState = {

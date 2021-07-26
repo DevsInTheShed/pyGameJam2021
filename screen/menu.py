@@ -1,9 +1,9 @@
 import pygame 
-from game.screen.screen import Screen
+from screen.screen import Screen
 
 class Menu(Screen):
-    def __init__(self, globals, state):
-        super().__init__(globals, state)
+    def __init__(self, state):
+        super().__init__(state)
 
     def draw(self):
         Title = self.globals.TitleFont.render("Western Harry", 1, self.globals.WHITE)
