@@ -18,10 +18,10 @@ class Stage(Screen):
                 if event.key == pygame.K_ESCAPE:
                     return False
                 else:
-                    self.player1.playerState[event.key] = True
+                    self.player1.state[event.key] = True
 
             if event.type == pygame.KEYUP:
-                self.player1.playerState[event.key] = False
+                self.player1.state[event.key] = False
 
             if event.type == pygame.QUIT:
                 return False

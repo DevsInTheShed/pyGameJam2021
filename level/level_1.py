@@ -5,7 +5,7 @@ from game.enemy import Enemy
 class Level_1:
     def __init__(self, update_score):
         self.title = "Level 1"
-        self.enemy = Enemy('alien1', 400, 200, 3, 5, GRAVITY)
+        self.enemy = Enemy(EnemyTypes["alien1"], 400, 200, 5)
         self.update_score = update_score
 
     def draw(self):
@@ -15,7 +15,6 @@ class Level_1:
         
         pygame.draw.line(ViewScreen, GroundColor, (0, 300), (SCREEN.width, 300))
 
-        self.enemy.update_animation()
-        self.enemy.draw(ViewScreen)
+        self.enemy.draw()
         self.enemy.move()
 
