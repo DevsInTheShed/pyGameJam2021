@@ -1,5 +1,7 @@
+from level.level_1 import Level_1
 import pygame 
 from screen.screen import Screen
+from level import *
 
 class Stage(Screen):
     def __init__(self, state, player1, enemy):
@@ -10,13 +12,10 @@ class Stage(Screen):
             "player1": {"moveLeft": False, "moveRight": False}
         }
         self.shoot = False
-
-    def draw_background(self):
-        self.globals.ViewScreen.fill(self.globals.ViewScreenBackgroundColor)
-        pygame.draw.line(self.globals.ViewScreen, self.globals.GroundColor, (0, 300), (self.globals.SCREEN.width, 300))
+        self.lvl1 = Level_1()
 
     def draw(self):
-        self.draw_background()
+        self.lvl1.draw()
 
         self.player1.update_animation()
         self.player1.draw(self.globals.ViewScreen)

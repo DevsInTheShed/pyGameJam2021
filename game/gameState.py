@@ -1,4 +1,4 @@
-from game import enums
+from game import enums, globals
 from game.character import Character
 from screen import menu, intro, stage, end, credits
 from game.enemy import Enemy
@@ -6,7 +6,7 @@ from game.enums import Action
 
 
 class GameState:
-    def __init__(self, globals):
+    def __init__(self):
         self.screens = enums.Screen
         self.currentScreen = self.screens.menu
 
