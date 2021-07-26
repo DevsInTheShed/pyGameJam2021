@@ -1,13 +1,13 @@
 import os, pygame
-from game import enums
+from game import enums, globals
 from game.bullet import Bullet
 
 
 class Character(pygame.sprite.Sprite):
-    def __init__(self, char_type, x, y, scale, speed, GRAVITY):
+    def __init__(self, char_type, x, y, scale, speed):
         pygame.sprite.Sprite.__init__(self)
         self.actions = enums.Action
-        self.GRAVITY = GRAVITY
+        self.action = self.actions.idle
         self.alive = True
         self.char_type = char_type
         self.speed = speed
@@ -16,14 +16,15 @@ class Character(pygame.sprite.Sprite):
         self.jump = False
         self.in_air = True
         self.flip = False
-        self.animation_list = []
+        self.shooting = False
+        self.playerState = {"moveLeft": False, "moveRight": False}
         self.frame_index = 0
-        self.action = self.actions.idle
         self.update_time = pygame.time.get_ticks()
         self.bullet_count = 100
-        self.score = 0
         self.bullet_group = pygame.sprite.Group()
-
+        self.score = 0
+        self.animation_list = []
+        
         animation_types = ['Idle', 'Run', 'Jump']
         for animation in animation_types:
             temp_list = []
@@ -49,6 +50,7 @@ class Character(pygame.sprite.Sprite):
 
     def update_score(self, increment):
         self.score = self.score + increment
+       
 
     def move(self, move_left, move_right):
         delta_x = 0
@@ -66,7 +68,7 @@ class Character(pygame.sprite.Sprite):
             self.jump = False
             self.in_air = True
 
-        self.velocity_y += self.GRAVITY
+        self.velocity_y += globals.GRAVITY
         if self.velocity_y > 10:
             self.velocity_y = 10
         delta_y = self.velocity_y
@@ -94,6 +96,18 @@ class Character(pygame.sprite.Sprite):
             self.update_time = pygame.time.get_ticks()
 
     def draw(self, screen):
+
+        if self.alive:
+            if self.shooting:
+                self.shoot()
+            if self.in_air:
+                self.update_action(self.actions.jump)
+            elif self.playerState["moveLeft"] or self.playerState["moveRight"]:
+                self.update_action(self.actions.run)
+            else:
+                self.update_action(self.actions.idle)
+            self.move(self.playerState["moveLeft"], self.playerState["moveRight"])
+
         self.bullet_group.update()
         self.bullet_group.draw(screen)
         print("Score: " + str(self.score))

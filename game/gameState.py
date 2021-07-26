@@ -12,7 +12,7 @@ class GameState:
         self.levels = enums.Level
         self.currentLevel = self.levels.none
 
-        player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
+        player = Character('player', 200, 200, 3, 5)
         player.actions = enums.Action
 
         scrMenu = menu.Menu(self)
