@@ -3,7 +3,7 @@ from game.globals import *
 from game.gameState import GameState
 
 pygame.init()
-pygame.display.set_caption('Western Defender')
+pygame.display.set_caption(GameTitle)
 
 state = GameState()
 

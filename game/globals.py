@@ -2,6 +2,8 @@ import os, pygame
 
 pygame.font.init()
 
+GameTitle = "Western Defender"
+
 # Game and View State
 SCREEN = pygame.Rect(0,0, 800, int(800 * 0.8))
 ViewScreen = pygame.display.set_mode((SCREEN.width, SCREEN.height))

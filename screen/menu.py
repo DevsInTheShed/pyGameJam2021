@@ -6,7 +6,7 @@ class Menu(Screen):
         super().__init__(state)
 
     def draw(self):
-        Title = self.globals.TitleFont.render("Western Defender", 1, self.globals.WHITE)
+        Title = self.globals.TitleFont.render(self.globals.GameTitle, 1, self.globals.WHITE)
         self.globals.ViewScreen.blit(Title, (self.globals.SCREEN.left + 20, 20))
 
         
