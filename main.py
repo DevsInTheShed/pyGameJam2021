@@ -1,4 +1,4 @@
-import os, pygame
+import pygame
 from game.globals import *
 from game.gameState import GameState
 

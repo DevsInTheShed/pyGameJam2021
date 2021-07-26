@@ -7,7 +7,7 @@ class Stage(Screen):
         super().__init__(state)
         self.player1 = player1
         
-        self.lvl1 = Level_1()
+        self.lvl1 = Level_1(self.state.update_score)
 
     def draw(self):
         self.lvl1.draw()
@@ -24,9 +24,8 @@ class Stage(Screen):
             if event.type == pygame.KEYUP:
                 self.player1.playerState[event.key] = False
 
-            
             if event.type == pygame.QUIT:
                 return False
-        
+
         return super().draw()
 

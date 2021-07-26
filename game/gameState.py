@@ -11,6 +11,7 @@ class GameState:
         self.currentScreen = self.screens.menu
         self.levels = enums.Level
         self.currentLevel = self.levels.none
+        self.score = 0
 
         player = Character('player', 200, 200, 3, 5)
 
@@ -31,6 +32,9 @@ class GameState:
 
     def gotoScreen(self, screen):
         self.currentScreen = screen
+
+    def update_score(self, increment):
+        self.score = self.score + increment
 
     def render(self):
         globals.ViewScreen.fill(globals.BLACK)

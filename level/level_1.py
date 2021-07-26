@@ -3,9 +3,10 @@ from game.globals import *
 from game.enemy import Enemy
 
 class Level_1:
-    def __init__(self):
+    def __init__(self, update_score):
         self.title = "Level 1"
         self.enemy = Enemy('alien1', 400, 200, 3, 5, GRAVITY)
+        self.update_score = update_score
 
     def draw(self):
         ViewScreen.fill(ViewScreenBackgroundColor)
