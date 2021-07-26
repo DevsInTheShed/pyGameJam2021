@@ -13,11 +13,14 @@ class Character(pygame.sprite.Sprite):
         self.speed = speed
         self.direction = 1
         self.velocity_y = 0
-        self.jump = False
         self.in_air = True
         self.flip = False
-        self.shooting = False
-        self.playerState = {"moveLeft": False, "moveRight": False}
+        self.playerState = {
+            pygame.K_LEFT: False, # Move Left 
+            pygame.K_RIGHT: False, # Move Right 
+            pygame.K_UP: False, # Jump
+            pygame.K_SPACE: False # Shoot
+        }
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
         self.bullet_count = 100
@@ -63,9 +66,9 @@ class Character(pygame.sprite.Sprite):
             delta_x = self.speed
             self.flip = False
             self.direction = 1
-        if self.jump and not self.in_air:
+        if self.playerState[pygame.K_UP] and not self.in_air:
             self.velocity_y = -11
-            self.jump = False
+            self.playerState[pygame.K_UP] = False
             self.in_air = True
 
         self.velocity_y += globals.GRAVITY
@@ -98,15 +101,15 @@ class Character(pygame.sprite.Sprite):
     def draw(self, screen):
 
         if self.alive:
-            if self.shooting:
+            if self.playerState[pygame.K_SPACE]:
                 self.shoot()
             if self.in_air:
                 self.update_action(self.actions.jump)
-            elif self.playerState["moveLeft"] or self.playerState["moveRight"]:
+            elif self.playerState[pygame.K_LEFT] or self.playerState[pygame.K_RIGHT]:
                 self.update_action(self.actions.run)
             else:
                 self.update_action(self.actions.idle)
-            self.move(self.playerState["moveLeft"], self.playerState["moveRight"])
+            self.move(self.playerState[pygame.K_LEFT], self.playerState[pygame.K_RIGHT])
 
         self.bullet_group.update()
         self.bullet_group.draw(screen)
