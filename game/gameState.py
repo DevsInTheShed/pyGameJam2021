@@ -12,11 +12,10 @@ class GameState:
 
         player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
         player.actions = enums.Action
-        enemy = Enemy('alien1', 400, 200, 3, 5, globals.GRAVITY)
 
         scrMenu = menu.Menu(self)
         scrIntro = intro.Intro(self)
-        scrStage = stage.Stage(self, player, enemy)
+        scrStage = stage.Stage(self, player)
         scrEnd = end.End(self)
         scrCredits = credits.Credits(self)
 

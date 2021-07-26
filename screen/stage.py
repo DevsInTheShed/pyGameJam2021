@@ -1,13 +1,11 @@
-from level.level_1 import Level_1
 import pygame 
 from screen.screen import Screen
-from level import *
+from level.level_1 import *
 
 class Stage(Screen):
-    def __init__(self, state, player1, enemy):
+    def __init__(self, state, player1):
         super().__init__(state)
         self.player1 = player1
-        self.enemy = enemy
         self.playerState = {
             "player1": {"moveLeft": False, "moveRight": False}
         }
@@ -20,9 +18,6 @@ class Stage(Screen):
         self.player1.update_animation()
         self.player1.draw(self.globals.ViewScreen)
 
-        self.enemy.update_animation()
-        self.enemy.draw(self.globals.ViewScreen)
-
 
         if self.player1.alive:
             if self.shoot:
@@ -34,9 +29,6 @@ class Stage(Screen):
             else:
                 self.player1.update_action(self.player1.actions.idle)
             self.player1.move(self.playerState["player1"]["moveLeft"], self.playerState["player1"]["moveRight"])
-
-            #self.enemy.update_action(self.player1.actions.idle, self.globals.bullet_group, self.player1)
-            self.enemy.move()
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
