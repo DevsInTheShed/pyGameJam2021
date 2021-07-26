@@ -10,6 +10,8 @@ class Character(pygame.sprite.Sprite):
         self.actions = enums.Action
         self.action = self.actions.idle
         self.alive = True
+        self.health = 100
+        self.max_health = self.health
         self.speed = speed
         self.direction = 1
         self.velocity_y = 0
@@ -32,6 +34,9 @@ class Character(pygame.sprite.Sprite):
 
         # Bullets
         self.bullet_group = pygame.sprite.Group()
+
+        # Enemy List
+        self.enemies = []
 
     def move(self, move_left, move_right):
         delta_x = 0
@@ -74,15 +79,26 @@ class Character(pygame.sprite.Sprite):
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
         if self.frame_index >= len(self.animation_list[self.action.value]):
-            self.frame_index = 0
+            if self.action == self.actions.death:
+                self.frame_index = len(self.animation_list[self.action.value]) -1
+            else:
+                self.frame_index = 0
 
     def shoot(self) :
-            bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery,
-                            self.direction)
+            bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction)
             self.bullet_group.add(bullet) 
+    
+    def checkLife(self):
+        if self.health <= 0:
+            self.health = 0
+            self.speed = 0
+            self.alive = False
+            self.update_action(self.action.death)
 
+    
     def draw(self):
         self.update_animation()
+        self.checkLife()
 
         self.bullet_group.update()
         self.bullet_group.draw(globals.ViewScreen)

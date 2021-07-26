@@ -4,6 +4,7 @@ class Action(Enum):
     idle = 0
     run = 1
     jump = 2
+    death = 3
 
 class Screen(Enum):
     menu = 0

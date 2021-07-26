@@ -26,6 +26,7 @@ YELLOW = (255,255,0)
 
 # Fonts
 TitleFont = pygame.font.SysFont('comicsans', 40)
+SmallFont = pygame.font.SysFont('comicsans', 20)
 
 # Images 
 StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
@@ -46,7 +47,8 @@ EnemySprites = {
 Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
-CharacterScale = 3
+CharacterScale = 2
+TileSize = 50
 
 def getCharacterSprites(characterTypes, animationTypes, spriteList):
     for char_type in characterTypes:
@@ -61,7 +63,7 @@ def getCharacterSprites(characterTypes, animationTypes, spriteList):
 
             spriteList[char_type].append(temp_list)
 
-animation_types = ['Idle', 'Run', 'Jump']
+animation_types = ['Idle', 'Run', 'Jump', 'Death']
 getCharacterSprites(PlayerTypes, animation_types, PlayerSprites)
 getCharacterSprites(EnemyTypes, animation_types, EnemySprites)
 

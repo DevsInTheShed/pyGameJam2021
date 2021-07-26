@@ -1,17 +1,20 @@
+from game.player import Player
 import pygame 
 from screen.screen import Screen
 from level.level_1 import *
+from game import globals
 
 class Stage(Screen):
-    def __init__(self, state, player1):
+    def __init__(self, state):
         super().__init__(state)
-        self.player1 = player1
-        
-        self.lvl1 = Level_1(self.state.update_score)
+
+             
+        self.player1 = Player(globals.PlayerTypes["player"], 200, 200, 5)
+        self.lvl1 = Level_1(self.player1)
+
 
     def draw(self):
         self.lvl1.draw()
-        self.player1.draw()
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:

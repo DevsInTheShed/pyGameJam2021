@@ -3,10 +3,14 @@ from game.globals import *
 from game.enemy import Enemy
 
 class Level_1:
-    def __init__(self, update_score):
+    def __init__(self, player):
         self.title = "Level 1"
-        self.enemy = Enemy(EnemyTypes["alien1"], 400, 200, 5)
-        self.update_score = update_score
+        self.player = player
+        self.enemy = Enemy(EnemyTypes["alien1"], 400, 200, 2, self.player)
+        
+        self.enemy.enemies = [self.player]
+        self.player.enemies = [self.enemy]
+       
 
     def draw(self):
         ViewScreen.fill(ViewScreenBackgroundColor)
@@ -15,6 +19,8 @@ class Level_1:
         
         pygame.draw.line(ViewScreen, GroundColor, (0, 300), (SCREEN.width, 300))
 
+        self.player.draw()
+
         self.enemy.draw()
-        self.enemy.move()
+        
 

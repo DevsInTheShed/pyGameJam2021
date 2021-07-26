@@ -14,11 +14,9 @@ class GameState:
         self.currentLevel = self.levels.none
         self.score = 0
 
-        player = Player(globals.PlayerTypes["player"], 200, 200, 5)
-
         scrMenu = menu.Menu(self)
         scrIntro = intro.Intro(self)
-        scrStage = stage.Stage(self, player)
+        scrStage = stage.Stage(self)
         scrEnd = end.End(self)
         scrCredits = credits.Credits(self)
 
