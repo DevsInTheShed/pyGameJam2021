@@ -4,12 +4,11 @@ from game.bullet import Bullet
 
 
 class Character(pygame.sprite.Sprite):
-    def __init__(self, char_type, x, y, scale, speed):
+    def __init__(self, char_type, x, y, speed):
         pygame.sprite.Sprite.__init__(self)
         self.actions = enums.Action
         self.action = self.actions.idle
         self.alive = True
-        self.char_type = char_type
         self.speed = speed
         self.direction = 1
         self.velocity_y = 0
@@ -25,20 +24,7 @@ class Character(pygame.sprite.Sprite):
         self.update_time = pygame.time.get_ticks()
         self.bullet_count = 100
         self.bullet_group = pygame.sprite.Group()
-        self.animation_list = []
-        
-        animation_types = ['Idle', 'Run', 'Jump']
-        for animation in animation_types:
-            temp_list = []
-            num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', self.char_type, animation)))
-            for i in range(num_of_frames):
-                i = str(i)
-                img = pygame.image.load(os.path.join('assets', 'sprites', self.char_type, animation, i+'.png')).convert_alpha()
-                img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
-                temp_list.append(img)
-
-            self.animation_list.append(temp_list)
-
+        self.animation_list = globals.CharacerSprites[char_type]
         self.image = self.animation_list[self.action.value][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)

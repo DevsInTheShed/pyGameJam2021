@@ -13,7 +13,7 @@ class GameState:
         self.currentLevel = self.levels.none
         self.score = 0
 
-        player = Character('player', 200, 200, 3, 5)
+        player = Character(globals.CharacterTypes["player"], 200, 200, 5)
 
         scrMenu = menu.Menu(self)
         scrIntro = intro.Intro(self)

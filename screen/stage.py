@@ -11,7 +11,6 @@ class Stage(Screen):
 
     def draw(self):
         self.lvl1.draw()
-
         self.player1.draw()
 
         for event in pygame.event.get():
