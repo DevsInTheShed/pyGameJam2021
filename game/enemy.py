@@ -22,6 +22,7 @@ class Enemy(Character):
             "laser": laser
         }
         self.currentWeapon = "laser"
+        self.enemies = [player]
    
     def brain(self):
         if self.alive == True:
@@ -30,7 +31,7 @@ class Enemy(Character):
                 self.idlingCounter = 50
                 self.update_action(self.actions.idle)
 
-            if self.vision.colliderect(self.player.rect):
+            if  self.player.alive and self.vision.colliderect(self.player):
                 self.update_action(self.actions.idle)
                 self.shoot()
             else:

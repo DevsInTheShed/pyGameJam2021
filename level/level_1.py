@@ -6,10 +6,11 @@ class Level_1:
     def __init__(self, player):
         self.title = "Level 1"
         self.player = player
-        self.enemy = Enemy(EnemyTypes["alien1"], 400, 200, 2, self.player)
+        self.enemies = [Enemy(EnemyTypes["alien1"], 400, 200, 2, self.player),
+                        Enemy(EnemyTypes["alien1"], 400, 300, 2, self.player),
+                        Enemy(EnemyTypes["alien1"], 400, 400, 2, self.player)]
         
-        self.enemy.enemies = [self.player]
-        self.player.enemies = [self.enemy]
+        self.player.enemies = self.enemies 
        
 
     def draw(self):
@@ -21,6 +22,7 @@ class Level_1:
 
         self.player.draw()
 
-        self.enemy.draw()
+        for enemy in self.enemies:
+            enemy.draw()
         
 
