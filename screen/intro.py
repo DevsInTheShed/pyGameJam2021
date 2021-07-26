@@ -11,10 +11,10 @@ class Intro(Screen):
     def draw(self):
         now = pygame.time.get_ticks()
 
-        if self.state.currentLevel == 0:
+        if self.state.currentLevel == self.state.levels.none:
             if Button(self.globals.ViewScreen, self.globals.SCREEN.centerx - (self.globals.Level1Img.get_rect().width+20), 
             self.globals.SCREEN.centery - (self.globals.Level1Img.get_rect().height+20), self.globals.Level1Img).draw():
-                self.state.currentLevel = 1
+                self.state.currentLevel = self.state.levels.one
                 now = pygame.time.get_ticks()
                 self.last = now
 

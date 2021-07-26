@@ -9,7 +9,8 @@ class GameState:
     def __init__(self):
         self.screens = enums.Screen
         self.currentScreen = self.screens.menu
-        self.currentLevel = 0
+        self.levels = enums.Level
+        self.currentLevel = self.levels.none
 
         player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
         player.actions = enums.Action

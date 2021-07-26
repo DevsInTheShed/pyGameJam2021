@@ -12,3 +12,10 @@ class Screen(Enum):
     stage = 2
     end = 3
     credits = 4
+
+class Level(Enum):
+    none = 0
+    one = 1
+    two = 2
+    three = 3
+    four = 4
