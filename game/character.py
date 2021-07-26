@@ -98,7 +98,8 @@ class Character(pygame.sprite.Sprite):
             self.frame_index = 0
             self.update_time = pygame.time.get_ticks()
 
-    def draw(self, screen):
+    def draw(self):
+        self.update_animation()
 
         if self.alive:
             if self.playerState[pygame.K_SPACE]:
@@ -112,6 +113,6 @@ class Character(pygame.sprite.Sprite):
             self.move(self.playerState[pygame.K_LEFT], self.playerState[pygame.K_RIGHT])
 
         self.bullet_group.update()
-        self.bullet_group.draw(screen)
+        self.bullet_group.draw(globals.ViewScreen)
         print("Score: " + str(self.score))
-        screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
+        globals.ViewScreen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)

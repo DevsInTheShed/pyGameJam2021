@@ -12,8 +12,7 @@ class Stage(Screen):
     def draw(self):
         self.lvl1.draw()
 
-        self.player1.update_animation()
-        self.player1.draw(self.globals.ViewScreen)
+        self.player1.draw()
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
