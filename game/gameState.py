@@ -9,6 +9,7 @@ class GameState:
     def __init__(self):
         self.screens = enums.Screen
         self.currentScreen = self.screens.menu
+        self.currentLevel = 0
 
         player = Character('player', 200, 200, 3, 5, globals.GRAVITY)
         player.actions = enums.Action
@@ -32,4 +33,5 @@ class GameState:
         self.currentScreen = screen
 
     def render(self):
+        globals.ViewScreen.fill(globals.BLACK)
         return self.view[self.currentScreen]()

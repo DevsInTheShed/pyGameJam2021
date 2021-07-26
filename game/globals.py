@@ -20,6 +20,10 @@ TitleFont = pygame.font.SysFont('comicsans', 40)
 
 # Images 
 StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
+Level1Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level1.png'))
+Level2Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level2.png'))
+Level3Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level3.png'))
+Level4Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level4.png'))
 
 
 # Physics constants
