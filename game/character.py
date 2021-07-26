@@ -24,7 +24,7 @@ class Character(pygame.sprite.Sprite):
         self.update_time = pygame.time.get_ticks()
         self.bullet_count = 100
         self.bullet_group = pygame.sprite.Group()
-        self.animation_list = globals.CharacerSprites[char_type]
+        self.animation_list = globals.CharacterSprites[char_type]
         self.image = self.animation_list[self.action.value][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)

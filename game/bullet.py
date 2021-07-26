@@ -7,8 +7,7 @@ class Bullet(pygame.sprite.Sprite):
 	def __init__(self, x, y, direction):
 		pygame.sprite.Sprite.__init__(self)
 		self.speed = 10
-		path = os.path.join('assets', 'sprites', 'icons')
-		self.image = pygame.image.load(path + '/bullet.png').convert_alpha()
+		self.image = BulletImg
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)
 		self.direction = direction

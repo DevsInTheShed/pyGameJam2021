@@ -29,8 +29,9 @@ StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single
 Level1Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level1.png'))
 Level2Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level2.png'))
 Level3Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level3.png'))
-Level4Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level4.png'))
-CharacerSprites = {
+Level4Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level4.png')) 
+BulletImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'bullet.png')).convert_alpha()
+CharacterSprites = {
     "player": [],
     "coop": []
 }
@@ -52,4 +53,4 @@ for char_type in CharacterTypes:
             img = pygame.transform.scale(img, (int(img.get_width() * CharacterScale), int(img.get_height() * CharacterScale)))
             temp_list.append(img)
 
-        CharacerSprites[char_type].append(temp_list)
+        CharacterSprites[char_type].append(temp_list)
