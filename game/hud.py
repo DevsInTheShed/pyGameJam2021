@@ -9,15 +9,12 @@ class Hud:
         self.rect = self.chromeImg.get_rect()
         self.rect.center = (SCREEN.centerx, SCREEN.bottom - HudChrome.get_height()//2)
         width, height = self.chromeImg.get_width(), self.chromeImg.get_height()
-        self.health = any      
-        # self.weapon = any
-
-        self.space = 20
+        self.health = None     
+        self.weapon = None
+        
+        self.space = 10
         self.healthBarWidth = 100
-        
-        # self.weaponRect = self.weapon.image.get_rect()
-        # self.weaponRect.rect.center = (SCREEN.centerx, SCREEN.centery)
-        
+        self.weaponRect = pygame.Rect(self.rect.left+self.space, self.rect.top+self.space, 200, 300)        
 
     def draw(self):
         ViewScreen.blit(self.chromeImg, self.rect)
@@ -30,8 +27,8 @@ class Hud:
         text_width, text_height = SmallFont.size(str(self.health))
         ViewScreen.blit(health, (healthBar.centerx - text_width//2, healthBar.top - (text_height + 5)))
 
-        ammoBar = pygame.Rect(self.rect.left + 200, self.rect.top +20, self.weapon.bullet_count*4, 20)
+        ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space, self.weapon.bullet_count*4, 20)
         pygame.draw.rect(ViewScreen, BLACK, ammoBar)
 
-        # ViewScreen.blit(self.weapon.image, self.weaponRect)
+        ViewScreen.blit(self.weapon.image, self.weaponRect)
         

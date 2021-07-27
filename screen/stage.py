@@ -9,10 +9,9 @@ class Stage(Screen):
     def __init__(self, state):
         super().__init__(state)
   
-        self.hud = Hud()   
         self.player1 = Player(globals.PlayerTypes["player"], 200, 200, 5)
         self.lvl1 = Level_1(self.player1)
-        
+        self.hud = Hud() 
 
     def update(self):
         self.hud.health = self.player1.health

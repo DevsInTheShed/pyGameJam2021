@@ -1,11 +1,11 @@
 class Weapon:
-    def __init__(self, ammo, cooldown, damage):
+    def __init__(self, ammo, cooldown, damage, img=None):
         self.active = False
         self.cooldown = cooldown
         self.timer = 0
         self.bullet_count = ammo
         self.damage = damage
-        # self.image = img
+        self.image = img
 
     def decr(self):
         if not self.bullet_count == -1:
