@@ -13,6 +13,7 @@ class Character(pygame.sprite.Sprite):
         self.health = 100
         self.max_health = self.health
         self.speed = speed
+        self.maxSpeed = self.speed
         self.direction = 1
         self.velocity_y = 0
         self.in_air = True

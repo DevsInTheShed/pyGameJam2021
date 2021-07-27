@@ -6,6 +6,8 @@ from game.character import Character
 class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(globals.PlayerSprites[char_type], x, y, speed)    
+        self.lives = 3
+        
         shotgun = Weapon(ammo=100, cooldown=20, damage=25, img=globals.ShotgunImg)
         shotgun.active = True
 
@@ -23,6 +25,17 @@ class Player(Character):
     def update(self):
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1
+    
+    def respawn(self):
+        self.lives -= 1
+        self.health = self.max_health
+        self.direction = 1
+        self.velocity_y = 0.
+        self.speed = self.maxSpeed
+        self.in_air = True
+        self.alive = True
+        self.update_action(self.actions.jump)
+        
 
     def draw(self):
         self.update()

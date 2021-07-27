@@ -14,6 +14,7 @@ class Stage(Screen):
         self.hud = Hud() 
 
     def update(self):
+        self.hud.lives = self.player1.lives
         self.hud.health = self.player1.health
         self.hud.weapon = self.player1.weapons[self.player1.currentWeapon]
 
