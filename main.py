@@ -13,4 +13,3 @@ while GameRunning:
     pygame.display.update()
 
 pygame.quit()
-  

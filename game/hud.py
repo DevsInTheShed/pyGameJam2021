@@ -8,7 +8,6 @@ class Hud:
         self.chromeImg = HudChrome
         self.rect = self.chromeImg.get_rect()
         self.rect.center = (SCREEN.centerx, SCREEN.bottom - HudChrome.get_height()//2)
-        width, height = self.chromeImg.get_width(), self.chromeImg.get_height()
         self.lives = None
         self.health = None     
         self.weapon = None
