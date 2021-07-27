@@ -10,7 +10,7 @@ class Level_1:
                         Enemy(EnemyTypes["alien1"], 400, 300, 2, self.player),
                         Enemy(EnemyTypes["alien1"], 400, 400, 2, self.player)]
         
-        self.player.enemies = self.enemies 
+        self.player.enemies = self.enemies
        
 
     def draw(self):

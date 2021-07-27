@@ -15,7 +15,7 @@ class Enemy(Character):
         self.idlingCounter = 0
         self.vision = pygame.Rect(0,0, 150, 20)
         
-        laser = Weapon(ammo=-1, cooldown=80, damage=30)
+        laser = Weapon(ammo=-1, cooldown=80, damage=10)
         laser.active = True
 
         self.weapons = {

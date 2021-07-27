@@ -6,8 +6,9 @@ from game.character import Character
 class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(globals.PlayerSprites[char_type], x, y, speed)    
-        shotgun = Weapon(ammo=100, cooldown=20, damage=50)
+        shotgun = Weapon(ammo=100, cooldown=20, damage=25)
         shotgun.active = True
+        # img=globals.ShotgunImg
 
         self.weapons = {
             "shotgun": shotgun
@@ -26,7 +27,7 @@ class Player(Character):
 
     def draw(self):
         self.update()
-
+        
         if self.alive:
             if self.state[pygame.K_SPACE]:
                 self.shoot()
