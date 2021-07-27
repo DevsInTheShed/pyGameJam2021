@@ -1,12 +1,11 @@
 import pygame
-import os
 from game.globals import *
 
 class Bullet(pygame.sprite.Sprite):
-	def __init__(self, owner, x, y, direction):
+	def __init__(self, owner, x, y, direction, damage):
 		pygame.sprite.Sprite.__init__(self)
 		self.speed = 10
-		self.damage = 5
+		self.damage = damage
 		self.image = BulletImg
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)

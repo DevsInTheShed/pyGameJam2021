@@ -1,7 +1,7 @@
 from game.weapons import Weapon
-import os, pygame
+import pygame
 from game.character import Character
-from game import enums, globals
+from game import globals
 import random
 
 
@@ -15,7 +15,7 @@ class Enemy(Character):
         self.idlingCounter = 0
         self.vision = pygame.Rect(0,0, 150, 20)
         
-        laser = Weapon(-1, 10)
+        laser = Weapon(ammo=-1, cooldown=80, damage=30)
         laser.active = True
 
         self.weapons = {
@@ -23,7 +23,7 @@ class Enemy(Character):
         }
         self.currentWeapon = "laser"
         self.enemies = [player]
-   
+
     def brain(self):
         if self.alive == True:
             if random.randint(1, 200) == 1 and self.idling == False:
@@ -57,7 +57,7 @@ class Enemy(Character):
         if self.weapons[self.currentWeapon].timer == 0:
             self.weapons[self.currentWeapon].timer = self.weapons[self.currentWeapon].cooldown
             super().shoot()         
-           
+                    
     def update(self):
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1

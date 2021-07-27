@@ -6,7 +6,7 @@ from game.character import Character
 class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(globals.PlayerSprites[char_type], x, y, speed)    
-        shotgun = Weapon(100, 20)
+        shotgun = Weapon(ammo=100, cooldown=20, damage=50)
         shotgun.active = True
 
         self.weapons = {

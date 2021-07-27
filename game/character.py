@@ -24,6 +24,9 @@ class Character(pygame.sprite.Sprite):
             pygame.K_SPACE: False # Shoot
         }
 
+        self.weapons = {}
+        self.currentWeapon = ""
+
         # Sprite Animation
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
@@ -85,7 +88,8 @@ class Character(pygame.sprite.Sprite):
                 self.frame_index = 0
 
     def shoot(self) :
-            bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction)
+            damage = self.weapons[self.currentWeapon].damage
+            bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction, damage)
             self.bullet_group.add(bullet) 
     
     def checkLife(self):
