@@ -35,8 +35,15 @@ Level2Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level
 Level3Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level3.png'))
 Level4Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level4.png')) 
 BulletImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'bullet.png')).convert_alpha()
+
 HudChrome = pygame.image.load(os.path.join('assets', 'sprites', 'ui', 'hudChrome.png'))
 ShotgunImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'shotgun.png'))
+
+#background
+pine1_img = pygame.image.load(os.path.join('assets', 'background', 'mountain.png')).convert_alpha()
+pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png')).convert_alpha()
+mountain_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
+sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png')).convert_alpha()
 
 PlayerSprites = {
     "player": [],
@@ -52,6 +59,8 @@ FPS = 60
 GRAVITY = 0.75
 CharacterScale = 2
 TileSize = 50
+
+bg_scroll = 0
 
 def getCharacterSprites(characterTypes, animationTypes, spriteList):
     for char_type in characterTypes:
