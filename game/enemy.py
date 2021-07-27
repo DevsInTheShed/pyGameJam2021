@@ -1,13 +1,13 @@
 from game.weapons import Weapon
 import pygame
 from game.character import Character
-from game import globals
+from game.globals import EnemySprites, TileSize, SmallFont, WHITE, ViewScreen
 import random
 
 
 class Enemy(Character):
     def __init__(self, char_type, x, y, speed, player):
-        super().__init__(globals.EnemySprites[char_type], x, y, speed)
+        super().__init__(EnemySprites[char_type], x, y, speed)
         self.player = player
         self.direction = random.choice([-1,1])
         self.moveCounter = 0
@@ -44,7 +44,7 @@ class Enemy(Character):
                     self.update_action(self.actions.run)
                     self.moveCounter += 1
 
-                    if self.moveCounter > globals.TileSize:
+                    if self.moveCounter > TileSize:
                         self.direction *= -1
                         self.moveCounter *= -1
                 else:
@@ -65,8 +65,8 @@ class Enemy(Character):
         self.brain()
         self.update()
 
-        health = globals.SmallFont.render(str(self.health), 1, globals.WHITE)
-        text_width, text_height = globals.SmallFont.size(str(self.health))
-        globals.ViewScreen.blit(health, (self.rect.centerx - text_width//2, self.rect.top - (text_height + 5)))
+        health = SmallFont.render(str(self.health), 1, WHITE)
+        text_width, text_height = SmallFont.size(str(self.health))
+        ViewScreen.blit(health, (self.rect.centerx - text_width//2, self.rect.top - (text_height + 5)))
         self.vision.center = (self.rect.centerx + self.vision.width//2 * self.direction, self.rect.centery)
         super().draw()

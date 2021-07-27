@@ -1,6 +1,7 @@
 from typing import Any
 import pygame
-from game import enums, globals
+from game import enums
+from game.globals import GRAVITY, ViewScreen
 from game.bullet import Bullet
 
 
@@ -58,7 +59,7 @@ class Character(pygame.sprite.Sprite):
             self.state[pygame.K_UP] = False
             self.in_air = True
 
-        self.velocity_y += globals.GRAVITY
+        self.velocity_y += GRAVITY
         if self.velocity_y > 10:
             self.velocity_y = 10
         delta_y = self.velocity_y
@@ -106,7 +107,7 @@ class Character(pygame.sprite.Sprite):
         self.checkLife()
 
         self.bullet_group.update()
-        self.bullet_group.draw(globals.ViewScreen)
+        self.bullet_group.draw(ViewScreen)
         
-        globals.ViewScreen.blit(pygame.transform.flip(self.image, self.flipSprite, False), self.rect)
+        ViewScreen.blit(pygame.transform.flip(self.image, self.flipSprite, False), self.rect)
 

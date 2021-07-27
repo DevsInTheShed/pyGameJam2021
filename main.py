@@ -1,5 +1,5 @@
 import pygame
-from game.globals import *
+from game.globals import GameRunning, Clock, FPS, GameTitle
 from game.gameState import GameState
 
 pygame.init()

@@ -1,5 +1,5 @@
 import pygame
-from game.globals import *
+from game.globals import BulletImg, SCREEN
 
 class Bullet(pygame.sprite.Sprite):
 	def __init__(self, owner, x, y, direction, damage):

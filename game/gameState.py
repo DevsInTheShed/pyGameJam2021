@@ -1,5 +1,6 @@
 from game.player import Player
-from game import enums, globals
+from game import enums
+from game.globals import BLACK, ViewScreen
 from game.character import Character
 from screen import menu, intro, stage, end, credits
 from game.enemy import Enemy
@@ -36,5 +37,5 @@ class GameState:
         self.score = self.score + increment
 
     def render(self):
-        globals.ViewScreen.fill(globals.BLACK)
+        ViewScreen.fill(BLACK)
         return self.view[self.currentScreen]()
