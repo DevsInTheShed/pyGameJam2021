@@ -15,7 +15,7 @@ class Enemy(Character):
         self.idlingCounter = 0
         self.vision = pygame.Rect(0,0, 150, 20)
         
-        laser = Weapon(ammo=-1, cooldown=80, damage=10)
+        laser = Weapon(ammo=-1, cooldown=80, damage=30)
         laser.active = True
 
         self.weapons = {
@@ -30,7 +30,6 @@ class Enemy(Character):
                 self.idling = True
                 self.idlingCounter = 50
                 self.update_action(self.actions.idle)
-
             if  self.player.alive and self.vision.colliderect(self.player):
                 self.update_action(self.actions.idle)
                 self.shoot()
@@ -57,7 +56,7 @@ class Enemy(Character):
         if self.weapons[self.currentWeapon].timer == 0:
             self.weapons[self.currentWeapon].timer = self.weapons[self.currentWeapon].cooldown
             super().shoot()         
-                    
+
     def update(self):
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1
