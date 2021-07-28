@@ -1,7 +1,7 @@
 from game.weapons import Weapon
 import pygame
 from game.character import Character
-from game.globals import EnemySprites, TileSize, SmallFont, WHITE, ViewScreen
+from game.globals import EnemySprites, SmallFont, TileSize, WHITE, ViewScreen
 import random
 
 

@@ -1,16 +1,36 @@
-from game.button import Button
+from game.world import World
 import pygame
+import csv, os
+from game.button import Button
 from game import globals
 from game.enemy import Enemy
 
-class Level_1:
+
+class Level:
     def __init__(self, player):
         self.title = "Level 1"
         self.player = player
-        self.enemies = [Enemy(globals.EnemyTypes["alien1"], 400, 450, 2, self.player),
-                        Enemy(globals.EnemyTypes["alien1"], 500, 450, 2, self.player),
-                        Enemy(globals.EnemyTypes["alien1"], 600, 450, 2, self.player)]
-        self.player.enemies = self.enemies 
+
+        self.COLS = 150
+        self.worldData = []
+
+        #empty world
+        for row in range(globals.ROWS):
+            r = [-1] * self.COLS
+            self.worldData.append(r)
+
+        #load in level data
+        with open(os.path.join('level', 'level1_data.csv'), newline='') as csvData:
+            reader = csv.reader(csvData, delimiter=',')
+            for y, row in enumerate(reader):
+                for x, tile in enumerate(row):
+                    self.worldData[y][x] =int(tile)
+
+        self.world = World(self.player)
+        self.player.enemies = self.world.processData(self.worldData)
+        
+    #create empty tile list
+    
     
     def draw_bg(self):
         #background
@@ -27,10 +47,8 @@ class Level_1:
         globals.ViewScreen.blit(Title, (globals.SCREEN.left + 20, 20))       
         
         self.draw_bg()
-        pygame.draw.line(globals.ViewScreen, globals.GroundColor, (0, 450), (globals.SCREEN.width, 450), 10)
-        
-        for enemy in self.enemies:
-            enemy.draw()
+        # pygame.draw.line(globals.ViewScreen, globals.GroundColor, (0, 450), (globals.SCREEN.width, 450), 10)
+        self.world.draw()
 
         if self.player.alive:
             self.player.draw()

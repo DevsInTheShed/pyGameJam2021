@@ -1,4 +1,5 @@
 import os, pygame
+from pygame import transform
 
 pygame.font.init()
 
@@ -45,6 +46,18 @@ pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png'))
 mountain_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
 sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png')).convert_alpha()
 
+# level tiles
+ROWS = 16
+TileSize = SCREEN.height // ROWS
+TileTypes = 20
+TileList = []
+
+for x in range(TileTypes):
+    img = pygame.image.load(os.path.join('assets', 'tiles', f'{x}.png'))
+    img = pygame.transform.scale(img, (TileSize, TileSize))
+    TileList.append(img)
+
+
 PlayerSprites = {
     "player": [],
     "coop": []
@@ -58,7 +71,6 @@ Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
 CharacterScale = 3
-TileSize = 50
 
 bg_scroll = 0
 
@@ -75,30 +87,9 @@ def getCharacterSprites(characterTypes, animationTypes, spriteList):
 
             spriteList[char_type].append(temp_list)
 
+
+
 animation_types = ['Idle', 'Run', 'Jump', 'Death']
 getCharacterSprites(PlayerTypes, animation_types, PlayerSprites)
 getCharacterSprites(EnemyTypes, animation_types, EnemySprites)
 
-# for char_type in PlayerTypes:
-#     for animation in animation_types:
-#         temp_list = []
-#         num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', char_type, animation)))
-#         for i in range(num_of_frames):
-#             i = str(i)
-#             img = pygame.image.load(os.path.join('assets', 'sprites', char_type, animation, i+'.png')).convert_alpha()
-#             img = pygame.transform.scale(img, (int(img.get_width() * CharacterScale), int(img.get_height() * CharacterScale)))
-#             temp_list.append(img)
-
-#         PlayerSprites[char_type].append(temp_list)
-
-# for char_type in EnemyTypes:
-#     for animation in animation_types:
-#         temp_list = []
-#         num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', 'enemy', char_type, animation)))
-#         for i in range(num_of_frames):
-#             i = str(i)
-#             img = pygame.image.load(os.path.join('assets', 'sprites', 'enemy', self.char_type, animation, i+'.png')).convert_alpha()
-#             img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
-#             temp_list.append(img)
-
-#         self.animation_list.append(temp_list)
