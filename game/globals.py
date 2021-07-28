@@ -57,7 +57,7 @@ EnemySprites = {
 Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
-CharacterScale = 2
+CharacterScale = 3
 TileSize = 50
 
 bg_scroll = 0

@@ -36,6 +36,7 @@ class Character(pygame.sprite.Sprite):
         self.image = self.animation_list[self.action.value][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
+        self.floor = y
 
         # Bullets
         self.bullet_group = pygame.sprite.Group()
@@ -64,8 +65,8 @@ class Character(pygame.sprite.Sprite):
             self.velocity_y = 10
         delta_y = self.velocity_y
 
-        if self.rect.bottom + delta_y > 300:
-            delta_y = 300 - self.rect.bottom
+        if self.rect.bottom + delta_y > self.floor:
+            delta_y = self.floor - self.rect.bottom
             self.in_air = False
 
         self.rect.x += delta_x

@@ -7,9 +7,9 @@ class Level_1:
     def __init__(self, player):
         self.title = "Level 1"
         self.player = player
-        self.enemies = [Enemy(globals.EnemyTypes["alien1"], 400, 200, 2, self.player),
-                        Enemy(globals.EnemyTypes["alien1"], 400, 300, 2, self.player),
-                        Enemy(globals.EnemyTypes["alien1"], 400, 400, 2, self.player)]
+        self.enemies = [Enemy(globals.EnemyTypes["alien1"], 400, 450, 2, self.player),
+                        Enemy(globals.EnemyTypes["alien1"], 500, 450, 2, self.player),
+                        Enemy(globals.EnemyTypes["alien1"], 600, 450, 2, self.player)]
         self.player.enemies = self.enemies 
     
     def draw_bg(self):
@@ -27,7 +27,7 @@ class Level_1:
         globals.ViewScreen.blit(Title, (globals.SCREEN.left + 20, 20))       
         
         self.draw_bg()
-        pygame.draw.line(globals.ViewScreen, globals.GroundColor, (0, 300), (globals.SCREEN.width, 300), 10)
+        pygame.draw.line(globals.ViewScreen, globals.GroundColor, (0, 450), (globals.SCREEN.width, 450), 10)
         
         for enemy in self.enemies:
             enemy.draw()
