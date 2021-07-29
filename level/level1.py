@@ -28,9 +28,7 @@ class Level:
 
         self.world = World(self.player)
         self.player.enemies = self.world.processData(self.worldData)
-        
-    #create empty tile list
-    
+            
     
     def draw_bg(self):
         #background
@@ -47,7 +45,6 @@ class Level:
         globals.ViewScreen.blit(Title, (globals.SCREEN.left + 20, 20))       
         
         self.draw_bg()
-        # pygame.draw.line(globals.ViewScreen, globals.GroundColor, (0, 450), (globals.SCREEN.width, 450), 10)
         self.world.draw()
 
         if self.player.alive:

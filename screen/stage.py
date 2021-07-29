@@ -34,6 +34,16 @@ class Stage(Screen):
         self.hud.draw()
 
         for event in pygame.event.get():
+            # if event.type == globals.CollideLeft:
+            #        self.player1.state[pygame.K_RIGHT] = False
+            #        self.player1.rect.x -= 1
+            # elif event.type == globals.CollideRight:
+            #        self.player1.state[pygame.K_LEFT] = False
+            #        self.player1.rect.x += 1
+
+            if event.type == globals.CollideTop:
+                self.player1.rect.y += globals.TileSize
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return False
@@ -42,6 +52,8 @@ class Stage(Screen):
 
             if event.type == pygame.KEYUP:
                 self.player1.state[event.key] = False
+
+            
 
             if event.type == pygame.QUIT:
                 return False

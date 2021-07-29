@@ -71,8 +71,11 @@ Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
 CharacterScale = 3
-
 bg_scroll = 0
+CollideLeft = pygame.USEREVENT + 1
+CollideRight = pygame.USEREVENT + 2
+CollideTop = pygame.USEREVENT + 3
+
 
 def getCharacterSprites(characterTypes, animationTypes, spriteList):
     for char_type in characterTypes:

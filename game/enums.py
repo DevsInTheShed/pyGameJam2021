@@ -19,3 +19,8 @@ class Level(Enum):
     two = 2
     three = 3
     four = 4
+
+class Collectable(Enum):
+    ammo = 0
+    health = 1
+    weapon = 2

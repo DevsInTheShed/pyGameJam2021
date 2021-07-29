@@ -65,6 +65,8 @@ class Character(pygame.sprite.Sprite):
             self.velocity_y = 10
         delta_y = self.velocity_y
 
+        #collision
+        
         if self.rect.bottom + delta_y > self.floor:
             delta_y = self.floor - self.rect.bottom
             self.in_air = False

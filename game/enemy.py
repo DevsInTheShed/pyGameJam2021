@@ -58,11 +58,11 @@ class Enemy(Character):
             super().shoot()         
 
     def update(self):
+        self.brain()
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1
 
     def draw(self):
-        self.brain()
         self.update()
 
         health = SmallFont.render(str(self.health), 1, WHITE)
