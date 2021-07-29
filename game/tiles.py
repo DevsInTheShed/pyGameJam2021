@@ -3,7 +3,7 @@ from game.globals import TileSize
 import pygame
 
 
-class Collectable(pygame.sprite.Sprite):
+class Tile(pygame.sprite.Sprite):
     def __init__(self, img, x ,y):
         pygame.sprite.Sprite.__init__(self)
         self.image = img
@@ -14,10 +14,20 @@ class Collectable(pygame.sprite.Sprite):
     def update(self, scroll=0):
         self.rect.x += scroll
 
-class ItemBox(Collectable):
+class WorldTile(Tile):
+    def __init__(self, img, x ,y):
+        super().__init__(img, x ,y)
+        self.rect.x = x 
+        self.rect.y = y 
+
+class ItemBox(Tile):
     def __init__(self, img, x ,y):
         super().__init__(img, x ,y)
         
-class Decorators(Collectable):
+class Decorators(Tile):
     def __init__(self, img, x ,y):
+        super().__init__(img, x ,y)
+
+class Water(Tile):
+    def __init__(self, img, x ,y): 
         super().__init__(img, x ,y)

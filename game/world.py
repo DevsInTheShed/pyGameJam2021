@@ -1,7 +1,7 @@
 
 from game.player import Player
 import pygame
-from game.collectable import Decorators, ItemBox
+from game.tiles import Decorators, ItemBox, Water, WorldTile
 from game.enemy import Enemy
 from game.globals import EnemyTypes, TileList, TileSize, ViewScreen
 from game import enums
@@ -14,6 +14,7 @@ class World():
         self.enemies = pygame.sprite.Group()
         self.collectables = pygame.sprite.Group()
         self.decorators = pygame.sprite.Group()
+        self.water = pygame.sprite.Group()
     
     def processData(self, data):
         # iterate through level data
@@ -32,7 +33,7 @@ class World():
 
                     #water
                     elif tile >=9 and tile <= 10:
-                        pass 
+                        self.water.add(Water(tileImg, tileRect.x, tileRect.y))  
                     
                     #decorators
                     elif tile >=11 and tile <= 14:
@@ -96,6 +97,10 @@ class World():
         for enemy in self.enemies:
             self.collision(self.obstacles, enemy)
 
+        for wet in self.water:
+            if wet.rect.colliderect(self.player):
+                self.player.health = 0
+
         
     def draw(self, scroll=0):
         self.update()
@@ -110,18 +115,11 @@ class World():
         self.collectables.update(scroll)
         self.collectables.draw(ViewScreen)
 
+        self.water.update(scroll)
+        self.water.draw(ViewScreen)
         
         for enemy in self.enemies:
             enemy.draw(scroll)
 
 
-class WorldTile(pygame.sprite.Sprite):
-    def __init__(self, img, x ,y):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.x = x 
-        self.rect.y = y 
 
-    def update(self, scroll=0):
-        self.rect.x += scroll
