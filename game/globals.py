@@ -71,7 +71,6 @@ Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
 CharacterScale = 3
-bgScroll = 0
 ScrollThreashold = 50
 
 

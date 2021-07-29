@@ -60,6 +60,7 @@ class Player(Character):
             else:
                 self.update_action(self.actions.idle)
             screenScroll = self.move(self.state[pygame.K_LEFT], self.state[pygame.K_RIGHT])
+            bgScroll = screenScroll
 
         super().draw()
-        return screenScroll
+        return screenScroll, bgScroll
