@@ -48,7 +48,7 @@ class Level:
         self.world.draw(self.ScreenScroll)
 
         if self.player.alive:
-            self.ScreenScroll, bgScroll = self.player.draw()
+            self.ScreenScroll, bgScroll = self.player.draw(self.BgScroll, self.world.length)
             self.BgScroll -= bgScroll
         else:
             if self.player.lives > 0:

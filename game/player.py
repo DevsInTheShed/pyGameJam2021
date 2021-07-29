@@ -1,7 +1,7 @@
 from pygame.sprite import RenderUpdates
 from game.weapons import Weapon
 import pygame
-from game.globals import PlayerSprites, SCREEN, ScrollThreashold,ShotgunImg
+from game.globals import PlayerSprites, SCREEN, ScrollThreashold,ShotgunImg, TileSize
 from game.character import Character
 
 class Player(Character):
@@ -37,17 +37,18 @@ class Player(Character):
         self.alive = True
         self.update_action(self.actions.jump)
         
-    def move(self, move_left, move_right):
+    def move(self, move_left, move_right, scroll, length):
         super().move(move_left, move_right)
 
         #handle screen scroll on player
-        if self.rect.right > SCREEN.width - ScrollThreashold or self.rect.left < ScrollThreashold:
+        if (self.rect.right > SCREEN.width - ScrollThreashold and scroll < (length * TileSize) - SCREEN.width) \
+            or (self.rect.left < ScrollThreashold and scroll > abs(self.delta_x)):
             self.rect.x -= self.delta_x
             return -self.delta_x
         else:
             return 0
 
-    def draw(self):
+    def draw(self, scroll, length):
         self.update()
         
         if self.alive:
@@ -59,7 +60,7 @@ class Player(Character):
                 self.update_action(self.actions.run)
             else:
                 self.update_action(self.actions.idle)
-            screenScroll = self.move(self.state[pygame.K_LEFT], self.state[pygame.K_RIGHT])
+            screenScroll = self.move(self.state[pygame.K_LEFT], self.state[pygame.K_RIGHT], scroll, length)
             bgScroll = screenScroll
 
         super().draw()

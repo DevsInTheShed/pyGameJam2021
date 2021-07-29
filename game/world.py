@@ -15,9 +15,11 @@ class World():
         self.collectables = pygame.sprite.Group()
         self.decorators = pygame.sprite.Group()
         self.water = pygame.sprite.Group()
+        self.length = 0
     
     def processData(self, data):
         # iterate through level data
+        self.length = len(data[0])
         for y, row in enumerate(data):
             for x, tile in enumerate(row):
                 if tile >= 0:
