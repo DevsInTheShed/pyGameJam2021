@@ -34,12 +34,6 @@ class Stage(Screen):
         self.hud.draw()
 
         for event in pygame.event.get():
-            # if event.type == globals.CollideLeft:
-            #        self.player1.state[pygame.K_RIGHT] = False
-            #        self.player1.rect.x -= 1
-            # elif event.type == globals.CollideRight:
-            #        self.player1.state[pygame.K_LEFT] = False
-            #        self.player1.rect.x += 1
 
             if event.type == globals.CollideTop:
                 self.player1.rect.y += globals.TileSize

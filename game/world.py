@@ -1,4 +1,5 @@
 
+from game.player import Player
 import pygame
 from game.collectable import Decorators, ItemBox
 from game.enemy import Enemy
@@ -59,8 +60,45 @@ class World():
 
         return self.enemies
 
-    
+    def collision(self, blocklist, character):
+        for block in blocklist:
+            feet = character.rect.bottom - TileSize
+
+            #collide left
+            if block.rect.collidepoint(character.rect.right - TileSize, feet):
+                character.state[pygame.K_RIGHT] = False
+                character.rect.x -= 1
+
+            # collide right
+            if block.rect.collidepoint(character.rect.left + TileSize, feet):
+                character.state[pygame.K_LEFT] = False
+                character.rect.x += 1
+
+            # collide feet
+            if block.rect.collidepoint(character.rect.centerx, character.rect.bottom):
+                if character.velocity_y >= 0:
+                    character.velocity_y = 0
+                    character.in_air = False
+                    character.delta_y = block.rect.top
+
+            # collide head
+            if block.rect.collidepoint(character.rect.centerx, character.rect.top):
+                if character.velocity_y < 0:
+                    character.velocity_y = 0
+                    character.delta_y = block.rect.bottom
+
+
+    def update(self):
+        feet = self.player.rect.bottom - TileSize
+
+        self.collision(self.obstacles, self.player)
+
+        for enemy in self.enemies:
+            self.collision(self.obstacles, enemy)
+
+        
     def draw(self):
+        self.update()
         # for tile in self.obstacles:
         #     ViewScreen.blit(tile[0], tile[1])
 
@@ -88,29 +126,29 @@ class WorldTile(pygame.sprite.Sprite):
         self.rect.y = y 
         self.player = player
     
-    def update(self):
-        feet = self.player.rect.bottom - TileSize
+    # def update(self):
+    #     feet = self.player.rect.bottom - TileSize
 
-        #collide left
-        if self.rect.collidepoint(self.player.rect.right - TileSize, feet):
-            self.player.state[pygame.K_RIGHT] = False
-            self.player.rect.x -= 1
+    #     #collide left
+    #     if self.rect.collidepoint(self.player.rect.right - TileSize, feet):
+    #         self.player.state[pygame.K_RIGHT] = False
+    #         self.player.rect.x -= 1
 
-        # collide right
-        if self.rect.collidepoint(self.player.rect.left + TileSize, feet):
-            self.player.state[pygame.K_LEFT] = False
-            self.player.rect.x += 1
+    #     # collide right
+    #     if self.rect.collidepoint(self.player.rect.left + TileSize, feet):
+    #         self.player.state[pygame.K_LEFT] = False
+    #         self.player.rect.x += 1
 
-        # collide feet
-        if self.rect.collidepoint(self.player.rect.centerx, self.player.rect.bottom):
-            if self.player.velocity_y >= 0:
-                self.player.velocity_y = 0
-                self.player.in_air = False
-                self.player.delta_y = self.rect.top
+    #     # collide feet
+    #     if self.rect.collidepoint(self.player.rect.centerx, self.player.rect.bottom):
+    #         if self.player.velocity_y >= 0:
+    #             self.player.velocity_y = 0
+    #             self.player.in_air = False
+    #             self.player.delta_y = self.rect.top
 
-        # collide head
-        if self.rect.collidepoint(self.player.rect.centerx, self.player.rect.top):
-            if self.player.velocity_y < 0:
-                self.player.velocity_y = 0
-                self.player.delta_y = self.rect.bottom
+    #     # collide head
+    #     if self.rect.collidepoint(self.player.rect.centerx, self.player.rect.top):
+    #         if self.player.velocity_y < 0:
+    #             self.player.velocity_y = 0
+    #             self.player.delta_y = self.rect.bottom
         
