@@ -18,7 +18,7 @@ EnemyTypes = {
 }
 
 # Color constants
-ViewScreenBackgroundColor = (61, 43, 31)
+BackgroundColor = (144, 201, 120)
 GroundColor = (255, 200, 200)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -41,9 +41,9 @@ HudChrome = pygame.image.load(os.path.join('assets', 'sprites', 'ui', 'hudChrome
 ShotgunImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'shotgun.png'))
 
 #background
-pine1_img = pygame.image.load(os.path.join('assets', 'background', 'mountain.png')).convert_alpha()
-pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png')).convert_alpha()
-mountain_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
+mountain_img = pygame.image.load(os.path.join('assets', 'background', 'mountain.png')).convert_alpha()
+pine1_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png')).convert_alpha()
+pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
 sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png')).convert_alpha()
 
 # level tiles
@@ -71,10 +71,9 @@ Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
 CharacterScale = 3
-bg_scroll = 0
-CollideLeft = pygame.USEREVENT + 1
-CollideRight = pygame.USEREVENT + 2
-CollideTop = pygame.USEREVENT + 3
+bgScroll = 0
+ScrollThreashold = 100
+
 
 
 def getCharacterSprites(characterTypes, animationTypes, spriteList):

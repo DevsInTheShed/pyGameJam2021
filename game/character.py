@@ -45,14 +45,14 @@ class Character(pygame.sprite.Sprite):
         self.enemies = []
 
     def move(self, move_left, move_right):
-        delta_x = 0
+        self.delta_x = 0
 
         if move_left:
-            delta_x = -self.speed
+            self.delta_x = -self.speed
             self.flipSprite = True
             self.direction = -1
         if move_right:
-            delta_x = self.speed
+            self.delta_x = self.speed
             self.flipSprite = False
             self.direction = 1
         if self.state[pygame.K_UP] and not self.in_air:
@@ -64,15 +64,14 @@ class Character(pygame.sprite.Sprite):
         if self.velocity_y > 10:
             self.velocity_y = 10
         delta_y = self.velocity_y
-
-        #collision
         
         if self.rect.bottom + delta_y > self.floor:
             delta_y = self.floor - self.rect.bottom
             self.in_air = False
 
-        self.rect.x += delta_x
+        self.rect.x += self.delta_x
         self.rect.y += delta_y
+
 
     def update_action(self, new_action):
         if new_action != self.action:

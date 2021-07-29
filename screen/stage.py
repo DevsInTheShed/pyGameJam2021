@@ -11,7 +11,7 @@ class Stage(Screen):
         super().__init__(state)
         self.gameState = state
         self.init = False
-        self.player1 = Player(globals.PlayerTypes["player"], 100, 450, 5)        
+        self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)        
         self.hud = Hud() 
 
     def levelInit(self):
@@ -34,9 +34,6 @@ class Stage(Screen):
         self.hud.draw()
 
         for event in pygame.event.get():
-
-            if event.type == globals.CollideTop:
-                self.player1.rect.y += globals.TileSize
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:

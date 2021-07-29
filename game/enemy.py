@@ -62,7 +62,8 @@ class Enemy(Character):
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1
 
-    def draw(self):
+    def draw(self, scroll):
+        self.rect.x += scroll
         self.update()
 
         health = SmallFont.render(str(self.health), 1, WHITE)

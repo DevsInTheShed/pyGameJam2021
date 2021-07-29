@@ -10,7 +10,7 @@ class Level:
     def __init__(self, player):
         self.title = "Level 1"
         self.player = player
-
+        self.ScreenScroll = 0
         self.COLS = 150
         self.worldData = []
 
@@ -32,23 +32,27 @@ class Level:
     
     def draw_bg(self):
         #background
-        width = globals.sky_img.get_width()
-        for x in range(5):
-            globals.ViewScreen.blit(globals.sky_img, ((x * width) - globals.bg_scroll * 0.5, 0))
-            globals.ViewScreen.blit(globals.mountain_img, ((x * width) - globals.bg_scroll * 0.6, globals.SCREEN.height - globals.mountain_img.get_height() - 300))
-            globals.ViewScreen.blit(globals.pine1_img, ((x * width) - globals.bg_scroll * 0.7, globals.SCREEN.height - globals.pine1_img.get_height() - 150))
-            globals.ViewScreen.blit(globals.pine2_img, ((x * width) - globals.bg_scroll * 0.8, globals.SCREEN.height - globals.pine2_img.get_height()))
+        # width = globals.sky_img.get_width()
+        # for x in range(5):
+        #     globals.ViewScreen.blit(globals.sky_img, ((x * width) - globals.bg_scroll * 0.5, 0))
+        #     globals.ViewScreen.blit(globals.mountain_img, ((x * width) - globals.bg_scroll * 0.6, globals.SCREEN.height - globals.mountain_img.get_height() - 300))
+        #     globals.ViewScreen.blit(globals.pine1_img, ((x * width) - globals.bg_scroll * 0.7, globals.SCREEN.height - globals.pine1_img.get_height() - 150))
+        #     globals.ViewScreen.blit(globals.pine2_img, ((x * width) - globals.bg_scroll * 0.8, globals.SCREEN.height - globals.pine2_img.get_height()))
+        globals.ViewScreen.blit(globals.sky_img, (0, 0))
+        globals.ViewScreen.blit(globals.pine1_img, (0, globals.SCREEN.height - globals.pine1_img.get_height()-200))
+        globals.ViewScreen.blit(globals.mountain_img, (0, globals.SCREEN.height - globals.mountain_img.get_height() - 150))
+        globals.ViewScreen.blit(globals.pine2_img, (0, globals.SCREEN.height - 300))
             
     def draw(self):
-        globals.ViewScreen.fill(globals.ViewScreenBackgroundColor)
+        globals.ViewScreen.fill(globals.BackgroundColor)
         Title = globals.TitleFont.render(self.title, 1, globals.WHITE)
         globals.ViewScreen.blit(Title, (globals.SCREEN.left + 20, 20))       
         
         self.draw_bg()
-        self.world.draw()
+        self.world.draw(self.ScreenScroll)
 
         if self.player.alive:
-            self.player.draw()
+            self.ScreenScroll = self.player.draw()
         else:
             if self.player.lives > 0:
                 if Button(globals.ViewScreen, globals.SCREEN.centerx - globals.StartImg.get_rect().width//2, globals.SCREEN.centery, globals.StartImg).draw():
