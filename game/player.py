@@ -10,13 +10,38 @@ class Player(Character):
         self.lives = 3
         self.fuel = 100
         
-        shotgun = Weapon(ammo=100, cooldown=20, damage=25, img=ShotgunImg)
+
+        flamethrower = Weapon(ammo=100, cooldown=1, damage=5, img=ShotgunImg)
+        flamethrower.active = True
+        shotgun = Weapon(ammo=20, cooldown=10, damage=25, img=ShotgunImg)
         shotgun.active = True
+        rocket = Weapon(ammo=3, cooldown=30, damage=25, img=ShotgunImg)
+        rocket.active = True
 
         self.weapons = {
-            "shotgun": shotgun
+            "shotgun": shotgun,
+            "flamethrower": flamethrower,
+            "rocket": rocket
         }
-        self.currentWeapon = "shotgun"
+        self.currentWeapon = "rocket"
+    
+    
+    def weapon_cycle(self, i):
+        lst = list(self.weapons) 
+        try: 
+            res = lst[lst.index(i)+1]  
+        except(ValueError,IndexError):
+            res = lst[0]
+
+        if self.weapons[str(res)].active:
+            return str(res)
+        else:
+            return self.weapon_cycle(str(res))
+        
+
+    def weapon_next(self):
+        self.currentWeapon = self.weapon_cycle(self.currentWeapon)
+        print(self.currentWeapon)
 
     def shoot(self) :
             if self.weapons[self.currentWeapon].bullet_count > 0 and self.weapons[self.currentWeapon].timer == 0:

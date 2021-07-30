@@ -39,6 +39,8 @@ class Stage(Screen):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return False
+                elif event.key == pygame.K_LSHIFT:
+                    self.player1.weapon_next()
                 else:
                     self.player1.state[event.key] = True
 
