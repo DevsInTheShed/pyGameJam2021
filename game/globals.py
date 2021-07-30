@@ -1,5 +1,6 @@
 import os, pygame
 from pygame import transform
+from pygame.constants import FULLSCREEN
 
 pygame.font.init()
 
