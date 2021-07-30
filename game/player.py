@@ -44,6 +44,7 @@ class Player(Character):
         if self.state[pygame.K_v] and self.fuel > 0:
             self.fuel -= .5
             self.velocity_y = -5
+            self.in_air = True
 
         #handle screen scroll on player
         if (self.rect.right > SCREEN.width - ScrollThreashold and scroll < (length * TileSize) - SCREEN.width) \
@@ -57,14 +58,15 @@ class Player(Character):
         self.update()
         
         if self.alive:
-            if self.state[pygame.K_v]:
-                self.update_action(self.actions.fly)
+            
             if self.state[pygame.K_SPACE]:
                 self.update_action(self.actions.shoot)
                 self.shoot()  
             
-            elif self.in_air:
+            if self.in_air and not (self.action == self.actions.fly):
                 self.update_action(self.actions.jump)
+            elif self.in_air and (self.action == self.actions.fly):
+                self.update_action(self.actions.fly)
             elif self.state[pygame.K_LEFT] or self.state[pygame.K_RIGHT]:
                 self.update_action(self.actions.run)
             else:
