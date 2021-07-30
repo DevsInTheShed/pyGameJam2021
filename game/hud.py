@@ -1,6 +1,6 @@
 
 import pygame
-from game.globals import BLACK, HudChrome, SCREEN, SmallFont, TitleFont, ViewScreen, WHITE
+from game.globals import BLACK, HudChrome, RED, SCREEN, SmallFont, TitleFont, ViewScreen, WHITE
 
 
 class Hud:
@@ -11,6 +11,7 @@ class Hud:
         self.lives = None
         self.health = None     
         self.weapon = None
+        self.fuel = 100
         
         self.space = 10
         self.healthBarWidth = 100
@@ -33,6 +34,8 @@ class Hud:
 
         ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space, self.weapon.bullet_count*4, 20)
         pygame.draw.rect(ViewScreen, BLACK, ammoBar)
+        fuelBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space*4, self.fuel*4, 20)
+        pygame.draw.rect(ViewScreen, RED, fuelBar)
 
         ViewScreen.blit(self.weapon.image, self.weaponRect)
         
