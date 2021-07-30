@@ -91,10 +91,10 @@ class Character(pygame.sprite.Sprite):
             else:
                 self.frame_index = 0
 
-    def shoot(self) :
-            damage = self.weapons[self.currentWeapon].damage
-            bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction, damage)
-            self.bullet_group.add(bullet) 
+    def shoot(self):
+        damage = self.weapons[self.currentWeapon].damage
+        bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction, damage)
+        self.bullet_group.add(bullet) 
     
     def checkLife(self):
         if self.health <= 0:

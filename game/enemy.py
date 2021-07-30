@@ -31,7 +31,7 @@ class Enemy(Character):
                 self.idlingCounter = 50
                 self.update_action(self.actions.idle)
             if  self.player.alive and self.vision.colliderect(self.player):
-                self.update_action(self.actions.idle)
+                self.update_action(self.actions.shoot)
                 self.shoot()
             else:
                 if self.idling == False:

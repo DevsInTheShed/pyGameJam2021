@@ -82,7 +82,7 @@ def getCharacterSprites(characterTypes, animationTypes, spriteList):
             num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', 'characters', char_type, animation)))
             for i in range(num_of_frames):
                 i = str(i)
-                img = pygame.image.load(os.path.join('assets', 'sprites', 'characters', char_type, animation, i+'.png')).convert_alpha()
+                img = pygame.image.load(os.path.join('assets', 'sprites', 'characters', char_type, animation, f'{i}.png')).convert_alpha()
                 img = pygame.transform.scale(img, (int(img.get_width() * CharacterScale), int(img.get_height() * CharacterScale)))
                 temp_list.append(img)
 
@@ -90,7 +90,7 @@ def getCharacterSprites(characterTypes, animationTypes, spriteList):
 
 
 
-animation_types = ['Idle', 'Run', 'Jump', 'Death']
+animation_types = ['Idle', 'Run', 'Jump', 'Death', 'Shoot']
 getCharacterSprites(PlayerTypes, animation_types, PlayerSprites)
 getCharacterSprites(EnemyTypes, animation_types, EnemySprites)
 

@@ -53,8 +53,10 @@ class Player(Character):
         
         if self.alive:
             if self.state[pygame.K_SPACE]:
-                self.shoot()
-            if self.in_air:
+                self.update_action(self.actions.shoot)
+                self.shoot()  
+            
+            elif self.in_air:
                 self.update_action(self.actions.jump)
             elif self.state[pygame.K_LEFT] or self.state[pygame.K_RIGHT]:
                 self.update_action(self.actions.run)
