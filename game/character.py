@@ -23,7 +23,8 @@ class Character(pygame.sprite.Sprite):
             pygame.K_LEFT: False, # Move Left 
             pygame.K_RIGHT: False, # Move Right 
             pygame.K_UP: False, # Jump
-            pygame.K_SPACE: False # Shoot
+            pygame.K_SPACE: False, # Shoot
+            pygame.K_v: False #Tlue
         }
 
         self.weapons = {}
@@ -59,7 +60,7 @@ class Character(pygame.sprite.Sprite):
             self.velocity_y = -11
             self.state[pygame.K_UP] = False
             self.in_air = True
-
+        
         self.velocity_y += GRAVITY
         if self.velocity_y > 10:
             self.velocity_y = 10

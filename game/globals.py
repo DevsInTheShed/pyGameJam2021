@@ -90,7 +90,7 @@ def getCharacterSprites(characterTypes, animationTypes, spriteList):
 
 
 
-animation_types = ['Idle', 'Run', 'Jump', 'Death', 'Shoot']
+animation_types = ['Idle', 'Run', 'Jump', 'Death', 'Fly', 'Shoot']
 getCharacterSprites(PlayerTypes, animation_types, PlayerSprites)
 getCharacterSprites(EnemyTypes, animation_types, EnemySprites)
 

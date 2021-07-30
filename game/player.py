@@ -8,6 +8,7 @@ class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(PlayerSprites[char_type], x, y, speed)    
         self.lives = 3
+        self.fuel = 100
         
         shotgun = Weapon(ammo=100, cooldown=20, damage=25, img=ShotgunImg)
         shotgun.active = True
@@ -40,6 +41,10 @@ class Player(Character):
     def move(self, move_left, move_right, scroll, length):
         super().move(move_left, move_right)
 
+        if self.state[pygame.K_v] and self.fuel > 0:
+            self.fuel -= .5
+            self.velocity_y = -5
+
         #handle screen scroll on player
         if (self.rect.right > SCREEN.width - ScrollThreashold and scroll < (length * TileSize) - SCREEN.width) \
             or (self.rect.left < ScrollThreashold and scroll > abs(self.delta_x)):
@@ -52,6 +57,8 @@ class Player(Character):
         self.update()
         
         if self.alive:
+            if self.state[pygame.K_v]:
+                self.update_action(self.actions.fly)
             if self.state[pygame.K_SPACE]:
                 self.update_action(self.actions.shoot)
                 self.shoot()  

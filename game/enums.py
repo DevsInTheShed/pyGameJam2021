@@ -5,8 +5,9 @@ class Action(Enum):
     run = 1
     jump = 2
     death = 3
-    shoot = 4
-
+    fly = 4
+    shoot = 5
+    
 class Screen(Enum):
     menu = 0
     intro = 1
