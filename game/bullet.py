@@ -2,11 +2,11 @@ import pygame
 from game.globals import BulletImg, SCREEN
 
 class Bullet(pygame.sprite.Sprite):
-	def __init__(self, owner, x, y, direction, damage):
+	def __init__(self, ammoImg, owner, x, y, direction, damage):
 		pygame.sprite.Sprite.__init__(self)
 		self.speed = 10
 		self.damage = damage
-		self.image = BulletImg
+		self.image = ammoImg
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)
 		self.direction = direction
@@ -17,6 +17,9 @@ class Bullet(pygame.sprite.Sprite):
 		self.rect.x += (self.direction * self.speed)
 		#check if bullet has gone off screen
 		if self.rect.right < SCREEN.left or self.rect.left > SCREEN.right:
+			self.kill()
+
+		if self.rect.x >= self.owner.rect.x + 200:
 			self.kill()
 
 		for enemy in self.owner.enemies:

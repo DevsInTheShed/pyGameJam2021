@@ -95,7 +95,8 @@ class Character(pygame.sprite.Sprite):
 
     def shoot(self):
         damage = self.weapons[self.currentWeapon].damage
-        bullet = Bullet(self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction, damage)
+        ammoImg = self.weapons[self.currentWeapon].ammoImg
+        bullet = Bullet(ammoImg, self, self.rect.centerx + (0.75 * self.rect.width * self.direction), self.rect.centery, self.direction, damage)
         self.bullet_group.add(bullet) 
     
     def checkLife(self):

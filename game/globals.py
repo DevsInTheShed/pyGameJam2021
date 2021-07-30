@@ -36,6 +36,7 @@ Level2Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level
 Level3Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level3.png'))
 Level4Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level4.png')) 
 BulletImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'bullet.png')).convert_alpha()
+FlameImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'flame.png')).convert_alpha()
 
 HudChrome = pygame.image.load(os.path.join('assets', 'sprites', 'ui', 'hudChrome.png'))
 ShotgunImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'shotgun.png'))

@@ -1,7 +1,7 @@
 from game.weapons import Weapon
 import pygame
 from game.character import Character
-from game.globals import EnemySprites, SmallFont, TileSize, WHITE, ViewScreen
+from game.globals import BulletImg, EnemySprites, SmallFont, TileSize, WHITE, ViewScreen
 import random
 
 
@@ -15,7 +15,7 @@ class Enemy(Character):
         self.idlingCounter = 0
         self.vision = pygame.Rect(0,0, 150, 20)
         
-        laser = Weapon(ammo=-1, cooldown=80, damage=30)
+        laser = Weapon(ammo=-1, cooldown=80, damage=30, ammoImg=BulletImg)
         laser.active = True
 
         self.weapons = {
