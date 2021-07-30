@@ -1,7 +1,7 @@
 from pygame.sprite import RenderUpdates
 from game.weapons import Weapon
 import pygame
-from game.globals import BulletImg, FlameImg, PlayerSprites, SCREEN, ScrollThreashold,ShotgunImg, TileSize
+from game.globals import BulletImg, FlameImg, FlamethrowerImg, PlayerSprites, RocketImg, SCREEN, ScrollThreashold,ShotgunImg, TileSize
 from game.character import Character
 
 class Player(Character):
@@ -10,13 +10,13 @@ class Player(Character):
         self.lives = 3
         self.fuel = 100
         
-        flamethrower = Weapon(ammo=500, cooldown=1, damage=2, img=ShotgunImg, ammoImg=FlameImg)
+        flamethrower = Weapon(ammo=1000, cooldown=1, damage=2, img=FlamethrowerImg, ammoImg=FlameImg)
         flamethrower.active = True
         
-        shotgun = Weapon(ammo=20, cooldown=10, damage=25, img=ShotgunImg, ammoImg=BulletImg)
+        shotgun = Weapon(ammo=20, cooldown=10, damage=50, img=ShotgunImg, ammoImg=BulletImg)
         shotgun.active = True
         
-        rocket = Weapon(ammo=3, cooldown=30, damage=75, img=ShotgunImg, ammoImg=BulletImg)
+        rocket = Weapon(ammo=3, cooldown=30, damage=75, img=RocketImg, ammoImg=BulletImg)
         rocket.active = True
 
         self.weapons = {

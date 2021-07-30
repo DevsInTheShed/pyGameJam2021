@@ -40,6 +40,8 @@ FlameImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'flame.p
 
 HudChrome = pygame.image.load(os.path.join('assets', 'sprites', 'ui', 'hudChrome.png'))
 ShotgunImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'shotgun.png'))
+RocketImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'rocket.png'))
+FlamethrowerImg = pygame.image.load(os.path.join('assets', 'sprites', 'icons', 'flamethrower.png'))
 
 #background
 mountain_img = pygame.image.load(os.path.join('assets', 'background', 'mountain.png')).convert_alpha()
