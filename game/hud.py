@@ -32,7 +32,11 @@ class Hud:
         text_width, text_height = TitleFont.size(str(self.lives))
         ViewScreen.blit(lives, (healthBar.centerx - text_width//2, healthBar.bottom - (text_height + 50)))
 
-        ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space, self.weapon.bullet_count*4, 20)
+        barWidth = 400
+        percent = (self.weapon.bullet_count/self.weapon.maxAmmo) * 100
+        bar = ((percent*barWidth)/100)
+        
+        ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space, bar, 20)
         pygame.draw.rect(ViewScreen, BLACK, ammoBar)
         fuelBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space*4, self.fuel*4, 20)
         pygame.draw.rect(ViewScreen, RED, fuelBar)

@@ -4,6 +4,7 @@ class Weapon:
         self.cooldown = cooldown
         self.timer = 0
         self.bullet_count = ammo
+        self.maxAmmo = self.bullet_count
         self.damage = damage
         self.image = img
         self.ammoImg = ammoImg

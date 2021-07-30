@@ -10,13 +10,13 @@ class Player(Character):
         self.lives = 3
         self.fuel = 100
         
-        flamethrower = Weapon(ammo=500, cooldown=1, damage=5, img=ShotgunImg, ammoImg=FlameImg)
+        flamethrower = Weapon(ammo=500, cooldown=1, damage=2, img=ShotgunImg, ammoImg=FlameImg)
         flamethrower.active = True
         
         shotgun = Weapon(ammo=20, cooldown=10, damage=25, img=ShotgunImg, ammoImg=BulletImg)
         shotgun.active = True
         
-        rocket = Weapon(ammo=3, cooldown=30, damage=25, img=ShotgunImg, ammoImg=BulletImg)
+        rocket = Weapon(ammo=3, cooldown=30, damage=75, img=ShotgunImg, ammoImg=BulletImg)
         rocket.active = True
 
         self.weapons = {
@@ -67,7 +67,7 @@ class Player(Character):
     def move(self, move_left, move_right, scroll, length):
         super().move(move_left, move_right)
 
-        if self.state[pygame.K_v] and self.fuel > 0:
+        if self.state[pygame.K_v] and self.fuel > 0 and self.rect.top >= 0:
             self.fuel -= .5
             self.velocity_y = -5
             self.in_air = True
