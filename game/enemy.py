@@ -7,7 +7,7 @@ import random
 
 class Enemy(Character):
     def __init__(self, char_type, x, y, speed, player):
-        super().__init__(EnemySprites[char_type], x, y, speed)
+        super().__init__(char_type, EnemySprites[char_type], x, y, speed)
         self.player = player
         self.direction = random.choice([-1,1])
         self.moveCounter = 0

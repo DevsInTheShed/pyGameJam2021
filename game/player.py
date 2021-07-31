@@ -6,7 +6,7 @@ from game.character import Character
 
 class Player(Character):
     def __init__(self, char_type, x, y, speed):
-        super().__init__(PlayerSprites[char_type], x, y, speed)    
+        super().__init__(char_type, PlayerSprites[char_type], x, y, speed)    
         self.lives = 3
         self.fuel = 100
         
@@ -24,7 +24,7 @@ class Player(Character):
             "flamethrower": flamethrower,
             "rocket": rocket
         }
-        self.currentWeapon = "flamethrower"
+        self.currentWeapon = "shotgun"
     
     
     def weapon_cycle(self, i):

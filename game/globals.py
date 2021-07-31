@@ -11,8 +11,7 @@ SCREEN = pygame.Rect(0,0, 800, int(800 * 0.8))
 ViewScreen = pygame.display.set_mode((SCREEN.width, SCREEN.height))
 GameRunning = True
 PlayerTypes = {
-    "player": "player",
-    "coop": "coop"
+    "player": "player"
 }
 EnemyTypes = {
     "alien1": "alien1",
@@ -63,11 +62,16 @@ for x in range(TileTypes):
 
 
 PlayerSprites = {
-    "player": [],
-    "coop": []
+    "player": {
+        "shotgun": [],
+        "flamethrower": [],
+        "rocket": [],
+    }
 }
 EnemySprites = {
-    "alien1": [],
+    "alien1": {
+        "laser": [],
+    },
 }
 
 # Physics constants
@@ -79,22 +83,24 @@ ScrollThreashold = 100
 
 
 
-def getCharacterSprites(characterTypes, animationTypes, spriteList):
+def getCharacterSprites(characterTypes, animationTypes, weaponTpes, spriteList):
     for char_type in characterTypes:
-        for animation in animationTypes:
-            temp_list = []
-            num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', 'characters', char_type, animation)))
-            for i in range(num_of_frames):
-                i = str(i)
-                img = pygame.image.load(os.path.join('assets', 'sprites', 'characters', char_type, animation, f'{i}.png')).convert_alpha()
-                img = pygame.transform.scale(img, (int(img.get_width() * CharacterScale), int(img.get_height() * CharacterScale)))
-                temp_list.append(img)
+        for weapon in weaponTpes:
+            for animation in animationTypes:
+                temp_list = []
+                num_of_frames = len(os.listdir(os.path.join('assets', 'sprites', 'characters', char_type, weapon, animation)))
+                for i in range(num_of_frames):
+                    i = str(i)
+                    img = pygame.image.load(os.path.join('assets', 'sprites', 'characters', char_type, weapon, animation, f'{i}.png')).convert_alpha()
+                    img = pygame.transform.scale(img, (int(img.get_width() * CharacterScale), int(img.get_height() * CharacterScale)))
+                    temp_list.append(img)
 
-            spriteList[char_type].append(temp_list)
+                spriteList[char_type][weapon].append(temp_list)
 
 
 
 animation_types = ['Idle', 'Run', 'Jump', 'Death', 'Fly', 'Shoot']
-getCharacterSprites(PlayerTypes, animation_types, PlayerSprites)
-getCharacterSprites(EnemyTypes, animation_types, EnemySprites)
+weapon_types = ["shotgun", "flamethrower", "rocket"]
+getCharacterSprites(PlayerTypes, animation_types, weapon_types, PlayerSprites)
+getCharacterSprites(EnemyTypes, animation_types, ["laser"], EnemySprites)
 
