@@ -74,7 +74,7 @@ EnemySprites = {
 Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
-CharacterScale = 3
+CharacterScale = 2
 ScrollThreashold = 100
 
 
