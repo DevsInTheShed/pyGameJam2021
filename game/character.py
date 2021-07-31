@@ -1,12 +1,12 @@
 from typing import Any
 import pygame
 from game import enums
-from game.globals import GRAVITY, TileSize, ViewScreen
+from game.globals import GRAVITY, PlayerTypes, TileSize, ViewScreen
 from game.bullet import Bullet
 
 
 class Character(pygame.sprite.Sprite):
-    def __init__(self, spriteArr, x, y, speed):
+    def __init__(self, char_type, spriteArr, x, y, speed):
         pygame.sprite.Sprite.__init__(self)
         self.actions = enums.Action
         self.action = self.actions.idle
@@ -28,13 +28,16 @@ class Character(pygame.sprite.Sprite):
         }
 
         self.weapons = {}
-        self.currentWeapon = ""
+        if char_type == 'player':
+            self.currentWeapon = "shotgun"
+        else:
+            self.currentWeapon = "laser"
 
         # Sprite Animation
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
         self.animation_list = spriteArr
-        self.image = self.animation_list[self.action.value][self.frame_index]
+        self.image = self.animation_list[self.currentWeapon][self.action.value][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
         self.floor = y
@@ -83,13 +86,13 @@ class Character(pygame.sprite.Sprite):
 
     def update_animation(self):
         ANIMATION_COOLDOWN = 100
-        self.image = self.animation_list[self.action.value][self.frame_index]
+        self.image = self.animation_list[self.currentWeapon][self.action.value][self.frame_index]
         if pygame.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
-        if self.frame_index >= len(self.animation_list[self.action.value]):
+        if self.frame_index >= len(self.animation_list[self.currentWeapon][self.action.value]):
             if self.action == self.actions.death:
-                self.frame_index = len(self.animation_list[self.action.value]) -1
+                self.frame_index = len(self.animation_list[self.currentWeapon][self.action.value]) -1
             else:
                 self.frame_index = 0
 
