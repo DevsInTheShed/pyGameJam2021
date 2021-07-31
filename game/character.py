@@ -1,7 +1,7 @@
 from typing import Any
 import pygame
 from game import enums
-from game.globals import GRAVITY, ViewScreen
+from game.globals import GRAVITY, TileSize, ViewScreen
 from game.bullet import Bullet
 
 
@@ -105,6 +105,38 @@ class Character(pygame.sprite.Sprite):
             self.speed = 0
             self.alive = False
             self.update_action(self.action.death)
+
+
+    def collision(self, obstacles):
+        self.obstacles = obstacles
+            
+    
+    def update(self):
+        for block in self.obstacles:
+
+            #collide left
+            if self.rect.collidepoint(block.rect.left, block.rect.centery):
+                self.state[pygame.K_RIGHT] = False
+                self.rect.x -= 1
+
+            # # collide right
+            if self.rect.collidepoint(block.rect.right, block.rect.centery):
+                self.state[pygame.K_LEFT] = False
+                self.rect.x += 1
+
+            # # collide feet
+            if self.rect.collidepoint(block.rect.centerx, block.rect.top):
+                if self.velocity_y >= 0:
+                    self.velocity_y = 0
+                    self.in_air = False
+                    self.delta_y = block.rect.top
+
+            # # collide head
+            if self.rect.collidepoint(block.rect.centerx, block.rect.bottom):
+                if self.velocity_y < 0:
+                    self.velocity_y = 0
+                    self.delta_y = block.rect.bottom
+
 
     
     def draw(self):

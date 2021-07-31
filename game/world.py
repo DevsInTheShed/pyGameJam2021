@@ -61,55 +61,17 @@ class World():
                     elif tile == 19:
                         pass
 
+        self.player.collision(self.obstacles)
+        for enemy in self.enemies:
+            enemy.collision(self.obstacles)
+        
         return self.enemies
 
-    def collision(self, blocklist, character):
-        for block in blocklist:
-            feet = character.rect.bottom - TileSize
-
-            #collide left
-            if block.rect.collidepoint(character.rect.right - TileSize, feet):
-                character.state[pygame.K_RIGHT] = False
-                character.rect.x -= 1
-
-            # collide right
-            if block.rect.collidepoint(character.rect.left + TileSize, feet):
-                character.state[pygame.K_LEFT] = False
-                character.rect.x += 1
-
-            # collide feet
-            if block.rect.collidepoint(character.rect.centerx, character.rect.bottom):
-                if character.velocity_y >= 0:
-                    character.velocity_y = 0
-                    character.in_air = False
-                    character.delta_y = block.rect.top
-
-            # collide head
-            if block.rect.collidepoint(character.rect.centerx, character.rect.top):
-                if character.velocity_y < 0:
-                    character.velocity_y = 0
-                    character.delta_y = block.rect.bottom
-
-
-    def update(self):
-        feet = self.player.rect.bottom - TileSize
-
-        self.collision(self.obstacles, self.player)
-
-        for enemy in self.enemies:
-            self.collision(self.obstacles, enemy)
-
-        for wet in self.water:
-            if wet.rect.colliderect(self.player):
-                self.player.health = 0
-
-        
+ 
     def draw(self, scroll=0):
-        self.update()
 
         self.obstacles.update(scroll)
         self.obstacles.draw(ViewScreen)
-
 
         self.decorators.update(scroll)
         self.decorators.draw(ViewScreen)
