@@ -19,8 +19,8 @@ EnemyTypes = {
 }
 
 # Color constants
-BackgroundColor = (144, 201, 120)
-GroundColor = (255, 200, 200)
+BackgroundColor = (220, 220, 144)
+GroundColor = (220, 220, 144)
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
