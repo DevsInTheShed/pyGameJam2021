@@ -53,6 +53,8 @@ class Player(Character):
     def update(self):
         if self.weapons[self.currentWeapon].timer > 0:
             self.weapons[self.currentWeapon].timer -= 1
+
+        super().update()
     
     def respawn(self):
         self.lives -= 1
