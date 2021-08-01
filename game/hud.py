@@ -11,6 +11,7 @@ class Hud:
         self.lives = None
         self.health = None     
         self.weapon = None
+        self.collected = None
         self.fuel = 100
         
         self.space = 10
@@ -36,10 +37,16 @@ class Hud:
         percent = (self.weapon.bullet_count/self.weapon.maxAmmo) * 100
         bar = ((percent*barWidth)/100)
         
-        ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space, bar, 20)
+        ammoBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, (self.rect.top + self.space) + 20, bar, 20)
         pygame.draw.rect(ViewScreen, BLACK, ammoBar)
-        fuelBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, self.rect.top + self.space*4, self.fuel*4, 20)
+        fuelBar = pygame.Rect(self.rect.left + self.weaponRect.width + self.space, (self.rect.top + self.space*4) +20, self.fuel*4, 20)
         pygame.draw.rect(ViewScreen, RED, fuelBar)
 
         ViewScreen.blit(self.weapon.image, self.weaponRect)
+
+
+        collectCount = f'{self.collected} of 3'
+        collect = TitleFont.render(collectCount, 1, WHITE)
+        text_width, text_height = TitleFont.size(collectCount)
+        ViewScreen.blit(collect, (self.rect.left + self.weaponRect.width + self.space, (self.rect.top + self.space*4) +50))
         

@@ -1,7 +1,6 @@
 
-from game.player import Player
 import pygame
-from game.tiles import Decorators, ItemBox, Water, WorldTile
+from game.tiles import Decorators, Exit, ItemBox, Water, WorldTile
 from game.enemy import Enemy
 from game.globals import EnemyTypes, TileList, TileSize, ViewScreen
 from game import enums
@@ -13,8 +12,10 @@ class World():
         self.obstacles = pygame.sprite.Group()
         self.enemies = pygame.sprite.Group()
         self.collectables = pygame.sprite.Group()
+        self.objectives = pygame.sprite.Group()
         self.decorators = pygame.sprite.Group()
         self.water = pygame.sprite.Group()
+        self.exits = pygame.sprite.Group()
         self.length = 0
     
     def processData(self, data):
@@ -61,13 +62,25 @@ class World():
                     elif tile == 23:
                         self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.jet, self.player))
 
-                    #health
-                    elif tile >= 24 and tile <= 26:
-                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.objective, self.player))
+                    #green
+                    elif tile == 24:
+                        self.objectives.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Objective.green, self.player))
+
+                    #red
+                    elif tile == 25:
+                        self.objectives.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Objective.red, self.player))
+
+                    #blue
+                    elif tile == 26:
+                        self.objectives.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Objective.blue, self.player))
                         
                      #enemies
                     elif tile == 27:
                         self.enemies.add(Enemy(EnemyTypes["alien1"], tileRect.x, tileRect.y+TileSize, 2, self.player))
+
+                    #Exit
+                    elif tile == 28:
+                        self.exits.add(Exit(tileRect.x, tileRect.top, self.player))
 
         self.player.collision(self.obstacles)
         for enemy in self.enemies:
@@ -87,11 +100,18 @@ class World():
         self.collectables.update(scroll)
         self.collectables.draw(ViewScreen)
 
+        self.objectives.update(scroll)
+        self.objectives.draw(ViewScreen)
+
         self.water.update(scroll)
         self.water.draw(ViewScreen)
         
         for enemy in self.enemies:
             enemy.draw(scroll)
+
+        for exit in self.exits:
+            exit.update(scroll)
+            exit.draw(ViewScreen)
 
 
 

@@ -27,6 +27,10 @@ class Collectable(Enum):
     rocket = 1
     fire = 2
     health = 3
-    objective = 4
-    jet = 5
+    jet = 4
 
+class Objective(Enum):
+    none = 0
+    red = 1
+    green = 2
+    blue = 3
