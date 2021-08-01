@@ -24,5 +24,7 @@ class Level(Enum):
 
 class Collectable(Enum):
     ammo = 0
-    health = 1
-    weapon = 2
+    rocket = 1
+    fire = 2
+    health = 3
+

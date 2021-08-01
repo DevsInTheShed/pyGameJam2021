@@ -38,28 +38,28 @@ class World():
                         self.water.add(Water(tileImg, tileRect.x, tileRect.y))  
                     
                     #decorators
-                    elif tile >=11 and tile <= 14:
+                    elif tile >=11 and tile <= 18:
                         self.decorators.add(Decorators(tileImg, tileRect.x, tileRect.y)) 
                     
-                    #enemies
-                    elif tile == 15:
-                        self.enemies.add(Enemy(EnemyTypes["alien1"], tileRect.x, tileRect.y+TileSize, 2, self.player))
-
                     #ammo
-                    elif tile == 16:
-                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y))
-
-                    #weapon
-                    elif tile == 17:
-                        pass
-                    
-                    #health
-                    elif tile == 18:
-                        pass
-
-                    #exit
                     elif tile == 19:
-                        pass
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.ammo, self.player))
+
+                    #rocket
+                    elif tile == 20:
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.rocket, self.player))
+                    
+                    #fire
+                    elif tile == 21:
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.fire, self.player))
+
+                    #health
+                    elif tile == 22:
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.health, self.player))
+                        
+                     #enemies
+                    elif tile == 26:
+                        self.enemies.add(Enemy(EnemyTypes["alien1"], tileRect.x, tileRect.y+TileSize, 2, self.player))
 
         self.player.collision(self.obstacles)
         for enemy in self.enemies:

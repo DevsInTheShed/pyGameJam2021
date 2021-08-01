@@ -52,7 +52,7 @@ sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png'
 # level tiles
 ROWS = 16
 TileSize = SCREEN.height // ROWS
-TileTypes = 20
+TileTypes = 27
 TileList = []
 
 for x in range(TileTypes):
