@@ -27,6 +27,7 @@ YELLOW = (255,255,0)
 
 # Fonts
 TitleFont = pygame.font.SysFont('comicsans', 40)
+MediumFont = pygame.font.SysFont('comicsans', 30)
 SmallFont = pygame.font.SysFont('comicsans', 20)
 
 # Images 
