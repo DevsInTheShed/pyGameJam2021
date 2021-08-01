@@ -28,6 +28,7 @@ class Stage(Screen):
         self.hud.health = self.player1.health
         self.hud.weapon = self.player1.weapons[self.player1.currentWeapon]
         self.hud.fuel = self.player1.fuel
+        self.hud.collected = self.player1.objectives
 
         if not self.player1.alive and self.player1.lives == 0:
             self.state.gotoScreen(self.state.screens.end)

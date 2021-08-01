@@ -8,6 +8,7 @@ class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(char_type, PlayerSprites[char_type], x, y, speed)    
         self.objectives = 0
+        self.collection = []
         self.lives = 3
         self.fuel = 100
         

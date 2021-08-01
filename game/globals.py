@@ -50,16 +50,29 @@ pine1_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png'))
 pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
 sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png')).convert_alpha()
 
+TimeMachineList = [
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_unfinished.png')).convert_alpha(),
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_capsule_red.png')).convert_alpha(),
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_capsule_green.png')).convert_alpha(),
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_capsule_blue.png')).convert_alpha(),
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_complete_0.png')).convert_alpha(),
+    pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_complete_1.png')).convert_alpha(),  
+]
+
 # level tiles
 ROWS = 16
 TileSize = SCREEN.height // ROWS
-TileTypes = 28
+TileTypes = 29
 TileList = []
 
 for x in range(TileTypes):
     img = pygame.image.load(os.path.join('assets', 'tiles', f'{x}.png'))
     img = pygame.transform.scale(img, (TileSize, TileSize))
     TileList.append(img)
+
+
+
+
 
 
 PlayerSprites = {
