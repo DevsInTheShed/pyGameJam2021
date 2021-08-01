@@ -31,8 +31,8 @@ class Credits(Screen):
         text_width, text_height = self.globals.TitleFont.size("Music")
         self.globals.ViewScreen.blit(Music, (self.globals.SCREEN.centerx - text_width//2, 450))
 
-        MusicNames = self.globals.MediumFont.render("Thomas Stiegler", 1, self.globals.WHITE)
-        text_width, text_height = self.globals.MediumFont.size("Thomas Stiegler")
+        MusicNames = self.globals.MediumFont.render("Noc.V - Thomas Stiegler", 1, self.globals.WHITE)
+        text_width, text_height = self.globals.MediumFont.size("Noc.V - Thomas Stiegler")
         self.globals.ViewScreen.blit(MusicNames, (self.globals.SCREEN.centerx - text_width//2, 500))
 
         return super().draw()

@@ -13,6 +13,7 @@ class Hud:
         self.weapon = None
         self.collected = None
         self.fuel = 100
+        self.score = 0
         
         self.space = 10
         self.healthBarWidth = 100
@@ -49,4 +50,9 @@ class Hud:
         collect = TitleFont.render(collectCount, 1, BLACK)
         text_width, text_height = TitleFont.size(collectCount)
         ViewScreen.blit(collect, (SCREEN.left + 20, SCREEN.top + 20))
+
+        # scoreCount = f'Score: {self.score}'
+        # score = TitleFont.render(scoreCount, 1, BLACK)
+        # text_width, text_height = TitleFont.size(scoreCount)
+        # ViewScreen.blit(score, (SCREEN.right - text_width - 20, SCREEN.top + 20))
         

@@ -9,15 +9,17 @@ from game import globals
 class Stage(Screen):
     def __init__(self, state):
         super().__init__(state)
-        self.gameState = state
-        self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)        
+        self.gameState = state   
         self.hud = Hud() 
 
     def levelInit(self):
-        self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)   
+        self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)  
         module = importlib.import_module(f'.level{self.gameState.currentLevel.value}', package='level')
         class_ = getattr(module, 'Level')
         self.lvl = class_(self.player1)
+
+    def updateScore(self, increment):
+        self.hud.score += increment
 
     def update(self):
         if self.state.init:

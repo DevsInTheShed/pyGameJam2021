@@ -1,7 +1,7 @@
 from typing import Any
 import pygame
 from game import enums
-from game.globals import GRAVITY, PlayerTypes, TileSize, ViewScreen
+from game.globals import GRAVITY, ViewScreen
 from game.bullet import Bullet
 
 
@@ -10,6 +10,7 @@ class Character(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.actions = enums.Action
         self.action = self.actions.idle
+        self.type = char_type
         self.alive = True
         self.health = 100
         self.max_health = self.health
