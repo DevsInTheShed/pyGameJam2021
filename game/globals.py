@@ -31,12 +31,12 @@ MediumFont = pygame.font.SysFont('comicsans', 30)
 SmallFont = pygame.font.SysFont('comicsans', 20)
 
 #music
-# jukeBox = [
-#     pygame.mixer.music.load(os.path.join('assets', 'music', 'track1.mp3')),
-#     pygame.mixer.music.load(os.path.join('assets', 'music', 'track2.mp3'))
-# ]
-# pygame.mixer.music.set_volume(0.5)
-# pygame.mixer.music.play(-1, 0.0, 5000)
+jukeBox = [
+    pygame.mixer.music.load(os.path.join('assets', 'music', 'track1.ogg')),
+    pygame.mixer.music.load(os.path.join('assets', 'music', 'track2.ogg'))
+]
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play(-1, 0.0, 5000)
 
 # Images 
 StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
