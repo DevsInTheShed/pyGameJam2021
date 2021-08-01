@@ -10,19 +10,19 @@ class Stage(Screen):
     def __init__(self, state):
         super().__init__(state)
         self.gameState = state
-        self.init = False
         self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)        
         self.hud = Hud() 
 
     def levelInit(self):
+        self.player1 = Player(globals.PlayerTypes["player"], 205, 450, 5)   
         module = importlib.import_module(f'.level{self.gameState.currentLevel.value}', package='level')
         class_ = getattr(module, 'Level')
         self.lvl = class_(self.player1)
 
     def update(self):
-        if not self.init:
+        if self.state.init:
             self.levelInit()
-            self.init = True
+            self.state.init = False
 
         self.hud.lives = self.player1.lives
         self.hud.health = self.player1.health
