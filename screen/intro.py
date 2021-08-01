@@ -30,8 +30,7 @@ class Intro(Screen):
 
             if Button(self.globals.ViewScreen, self.globals.SCREEN.centerx + 20, 
             self.globals.SCREEN.centery + 20, self.globals.Level4Img).draw():
-                self.state.currentLevel = self.state.levels.one
-                self.state.gotoScreen(self.state.screens.stage)
+                pass
 
         else:
             # set up level intro
