@@ -7,6 +7,7 @@ from game.character import Character
 class Player(Character):
     def __init__(self, char_type, x, y, speed):
         super().__init__(char_type, PlayerSprites[char_type], x, y, speed)    
+        self.objectives = 0
         self.lives = 3
         self.fuel = 100
         
@@ -60,8 +61,10 @@ class Player(Character):
         self.lives -= 1
         self.health = self.max_health
         self.direction = 1
-        self.velocity_y = 0.
+        self.velocity_y = 0
         self.speed = self.maxSpeed
+        self.rect.x -= (TileSize*2)
+        self.rect.y -= 0
         self.in_air = True
         self.alive = True
         self.update_action(self.actions.jump)

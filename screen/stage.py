@@ -29,6 +29,9 @@ class Stage(Screen):
         self.hud.weapon = self.player1.weapons[self.player1.currentWeapon]
         self.hud.fuel = self.player1.fuel
 
+        if not self.player1.alive and self.player1.lives == 0:
+            self.state.gotoScreen(self.state.screens.end)
+
     def draw(self):
         self.update()
         self.lvl.draw()

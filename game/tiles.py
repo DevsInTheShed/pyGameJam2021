@@ -32,14 +32,20 @@ class ItemBox(Tile):
 
         if pygame.sprite.collide_rect(self, self.player):
             self.kill()
+            
+            #weapons
             if self.itemType == enums.Collectable.ammo:
                 self.player.weapons["shotgun"].bullet_count = self.player.weapons["shotgun"].maxAmmo
             if self.itemType == enums.Collectable.rocket:
                 self.player.weapons["rocket"].bullet_count = self.player.weapons["rocket"].maxAmmo
             if self.itemType == enums.Collectable.fire:
                 self.player.weapons["flamethrower"].bullet_count = self.player.weapons["flamethrower"].maxAmmo
+            
+            #player
             if self.itemType == enums.Collectable.health:
                 self.player.health = self.player.max_health
+            if self.itemType == enums.Collectable.objective:
+                self.player.objectives += 1
 
         
 class Decorators(Tile):
@@ -47,5 +53,15 @@ class Decorators(Tile):
         super().__init__(img, x ,y)
 
 class Water(Tile):
-    def __init__(self, img, x ,y): 
+    def __init__(self, img, x ,y, player): 
         super().__init__(img, x ,y)
+        self.player =player
+
+    def update(self, scroll):
+        super().update(scroll)
+
+        # if pygame.sprite.collide_rect(self, self.player):
+        #     self.player.health = 0
+
+        if self.rect.collidepoint(self.player.rect.centerx,self.player.rect.bottom):
+            self.player.health = 0

@@ -30,15 +30,15 @@ class World():
                     tileData = (tileImg, tileRect)
 
                     #obstacles
-                    if tile >= 0 and tile <= 8:
+                    if tile >= 0 and tile <= 9:
                         self.obstacles.add(WorldTile(tileImg, tileRect.x, tileRect.y))
 
-                    #water
-                    elif tile >=9 and tile <= 10:
-                        self.water.add(Water(tileImg, tileRect.x, tileRect.y))  
+                    #tar
+                    elif tile >=11 and tile <= 12:
+                        self.water.add(Water(tileImg, tileRect.x, tileRect.y, self.player))  
                     
                     #decorators
-                    elif tile >=11 and tile <= 18:
+                    elif tile >=13 and tile <= 18:
                         self.decorators.add(Decorators(tileImg, tileRect.x, tileRect.y)) 
                     
                     #ammo
@@ -56,6 +56,10 @@ class World():
                     #health
                     elif tile == 22:
                         self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.health, self.player))
+
+                    #health
+                    elif tile >= 23 and tile <= 25:
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.objective, self.player))
                         
                      #enemies
                     elif tile == 26:

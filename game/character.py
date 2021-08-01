@@ -106,6 +106,7 @@ class Character(pygame.sprite.Sprite):
         if self.health <= 0:
             self.health = 0
             self.speed = 0
+            self.delta_x = 0
             self.alive = False
             self.update_action(self.action.death)
 

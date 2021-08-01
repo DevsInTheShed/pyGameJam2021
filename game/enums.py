@@ -27,4 +27,5 @@ class Collectable(Enum):
     rocket = 1
     fire = 2
     health = 3
+    objective = 4
 
