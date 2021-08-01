@@ -32,6 +32,7 @@ SmallFont = pygame.font.SysFont('comicsans', 20)
 
 # Images 
 StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
+VictoryImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'victory.png'))
 Level1Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level1.png'))
 Level2Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level2.png'))
 Level3Img = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'level3.png'))
