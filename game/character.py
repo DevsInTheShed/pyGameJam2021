@@ -119,12 +119,12 @@ class Character(pygame.sprite.Sprite):
         for block in self.obstacles:
 
             #collide left
-            if self.rect.collidepoint(block.rect.left, block.rect.centery):
+            if self.rect.collidepoint(block.rect.left + 10, block.rect.centery):
                 self.state[pygame.K_RIGHT] = False
                 self.rect.x -= 1
 
             # # collide right
-            if self.rect.collidepoint(block.rect.right, block.rect.centery):
+            if self.rect.collidepoint(block.rect.right - 10, block.rect.centery):
                 self.state[pygame.K_LEFT] = False
                 self.rect.x += 1
 
