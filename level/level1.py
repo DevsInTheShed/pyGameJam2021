@@ -54,8 +54,9 @@ class Level:
             if self.player.lives > 0:
                 self.player.delta_x = 0
                 if Button(globals.ViewScreen, globals.SCREEN.centerx - globals.StartImg.get_rect().width//2, globals.SCREEN.centery, globals.StartImg).draw():
-                    self.world.draw(-self.ScreenScroll)
                     self.player.respawn()
+
+
 
 
         

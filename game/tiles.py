@@ -75,6 +75,7 @@ class Exit(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midtop = (x + TileSize, y + (TileSize - self.image.get_height()))
         self.player = player
+        self.active = False
 
         #anim
         self.frame_index = 0
@@ -84,14 +85,25 @@ class Exit(pygame.sprite.Sprite):
     def update(self, scroll=0):
         self.rect.x += scroll
 
-    def update_animation(self):
-        ANIMATION_COOLDOWN = 100
         if enums.Objective.red in self.player.collection and \
         enums.Objective.green in self.player.collection and \
         enums.Objective.blue in self.player.collection: 
+            self.active = True
+
+        # if pygame.sprite.collide_rect(self, self.player):
+        #     print(f'active={self.active}')
+
+        if pygame.sprite.collide_rect(self, self.player) and self.active:
+            self.player.win = self.active
+
+
+    def update_animation(self):
+        ANIMATION_COOLDOWN = 100
+        if self.active: 
             self.image = self.animation_list[self.frame_index]
         else:
             self.image = self.exitImages[enums.Objective.none.value]
+
         if pygame.time.get_ticks() - self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1

@@ -14,6 +14,7 @@ class GameState:
         self.levels = enums.Level
         self.currentLevel = self.levels.none
         self.score = 0
+        self.win = False
 
         scrMenu = menu.Menu(self)
         scrIntro = intro.Intro(self)

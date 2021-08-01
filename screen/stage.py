@@ -31,6 +31,11 @@ class Stage(Screen):
         self.hud.collected = self.player1.objectives
 
         if not self.player1.alive and self.player1.lives == 0:
+            self.state.win = False
+            self.state.gotoScreen(self.state.screens.end)
+
+        if self.player1.win:
+            self.state.win = True
             self.state.gotoScreen(self.state.screens.end)
 
     def draw(self):

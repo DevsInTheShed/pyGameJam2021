@@ -11,6 +11,7 @@ class Player(Character):
         self.collection = []
         self.lives = 3
         self.fuel = 100
+        self.win = False
         
         flamethrower = Weapon(ammo=1000, cooldown=1, damage=2, img=FlamethrowerImg, ammoImg=FlameImg)
         flamethrower.active = True
