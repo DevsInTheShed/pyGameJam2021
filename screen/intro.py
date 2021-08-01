@@ -35,14 +35,11 @@ class Intro(Screen):
         else:
             # set up level intro
             self.globals.ViewScreen.blit(CutScene1_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
-            self.wait
-            self.globals.ViewScreen.blit(CutScene2_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
-            self.wait
-            self.globals.ViewScreen.blit(CutScene3_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
-            self.wait
-
-            if now - self.last >= self.wait:
-                self.state.gotoScreen(self.state.screens.stage)
-
+            if now - self.last >= self.wait * 3:
+                self.globals.ViewScreen.blit(CutScene2_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
+                if now - self.last >= self.wait * 5:
+                    self.globals.ViewScreen.blit(CutScene3_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
+                    if now - self.last >= self.wait * 7:
+                        self.state.gotoScreen(self.state.screens.stage)
 
         return super().draw()
