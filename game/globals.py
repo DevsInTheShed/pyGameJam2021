@@ -36,7 +36,7 @@ pygame.mixer.music.load(os.path.join('assets', 'music', 'track1.ogg')),
 pygame.mixer.music.queue(os.path.join('assets', 'music', 'track2.ogg'))
 
 pygame.mixer.music.set_volume(0.5)
-pygame.mixer.music.play(1, 0.0, 5000)
+pygame.mixer.music.play(-1, 0.0, 5000)
 
 # Images 
 StartImg = pygame.image.load(os.path.join('assets', 'sprites', 'button', 'single_player.png'))
