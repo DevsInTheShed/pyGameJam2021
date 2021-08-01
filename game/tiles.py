@@ -46,6 +46,8 @@ class ItemBox(Tile):
                 self.player.health = self.player.max_health
             if self.itemType == enums.Collectable.objective:
                 self.player.objectives += 1
+            if self.itemType == enums.Collectable.jet:
+                self.player.fuel = 100
 
         
 class Decorators(Tile):

@@ -52,7 +52,7 @@ sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png'
 # level tiles
 ROWS = 16
 TileSize = SCREEN.height // ROWS
-TileTypes = 27
+TileTypes = 28
 TileList = []
 
 for x in range(TileTypes):
@@ -79,7 +79,7 @@ Clock = pygame.time.Clock()
 FPS = 60
 GRAVITY = 0.75
 CharacterScale = 2
-ScrollThreashold = 100
+ScrollThreashold = TileSize*3
 
 
 

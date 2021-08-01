@@ -58,11 +58,15 @@ class World():
                         self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.health, self.player))
 
                     #health
-                    elif tile >= 23 and tile <= 25:
+                    elif tile == 23:
+                        self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.jet, self.player))
+
+                    #health
+                    elif tile >= 24 and tile <= 26:
                         self.collectables.add(ItemBox(tileImg, tileRect.x, tileRect.y, enums.Collectable.objective, self.player))
                         
                      #enemies
-                    elif tile == 26:
+                    elif tile == 27:
                         self.enemies.add(Enemy(EnemyTypes["alien1"], tileRect.x, tileRect.y+TileSize, 2, self.player))
 
         self.player.collision(self.obstacles)

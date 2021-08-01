@@ -28,4 +28,5 @@ class Collectable(Enum):
     fire = 2
     health = 3
     objective = 4
+    jet = 5
 
