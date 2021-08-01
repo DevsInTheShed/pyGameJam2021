@@ -51,6 +51,11 @@ pine1_img = pygame.image.load(os.path.join('assets', 'background', 'pine1.png'))
 pine2_img = pygame.image.load(os.path.join('assets', 'background', 'pine2.png')).convert_alpha()
 sky_img = pygame.image.load(os.path.join('assets', 'background', 'sky_cloud.png')).convert_alpha()
 
+#cutscenes
+CutScene1_img = pygame.image.load(os.path.join('assets', 'sprites', 'cutscenes', '01.png'))
+CutScene2_img = pygame.image.load(os.path.join('assets', 'sprites', 'cutscenes', '02.png'))
+CutScene3_img = pygame.image.load(os.path.join('assets', 'sprites', 'cutscenes', '03.png'))
+
 TimeMachineList = [
     pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_unfinished.png')).convert_alpha(),
     pygame.image.load(os.path.join('assets', 'sprites', 'timemachine', 'timemachine_capsule_red.png')).convert_alpha(),

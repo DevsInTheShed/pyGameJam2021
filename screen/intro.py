@@ -1,12 +1,14 @@
-import pygame 
+import pygame, os
 from screen.screen import Screen
 from game.button import Button
+from game.globals import CutScene1_img, CutScene2_img, CutScene3_img
 
 class Intro(Screen):
     def __init__(self, state):
         super().__init__(state)
         self.last = pygame.time.get_ticks()
         self.wait = 3000
+
 
     def draw(self):
         now = pygame.time.get_ticks()
@@ -32,10 +34,13 @@ class Intro(Screen):
                 self.state.gotoScreen(self.state.screens.stage)
 
         else:
-            # set up level intro 
-            Title = self.globals.TitleFont.render("Level 1 intro", 1, self.globals.WHITE)
-            text_width, text_height = self.globals.TitleFont.size("Level 1 intro")
-            self.globals.ViewScreen.blit(Title, (self.globals.SCREEN.centerx - text_width//2, self.globals.SCREEN.centery - text_height//2))
+            # set up level intro
+            self.globals.ViewScreen.blit(CutScene1_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
+            self.wait
+            self.globals.ViewScreen.blit(CutScene2_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
+            self.wait
+            self.globals.ViewScreen.blit(CutScene3_img, (self.globals.SCREEN.centerx / 2, self.globals.SCREEN.centery / 2))
+            self.wait
 
             if now - self.last >= self.wait:
                 self.state.gotoScreen(self.state.screens.stage)
